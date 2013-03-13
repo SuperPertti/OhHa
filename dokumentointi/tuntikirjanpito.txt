@@ -1,1 +1,2 @@
 12.3.2013: GitHubin käytön opettelu, ensimmäiset tehtävät; 2h
+13.3.2013: Lisää UML ja koodaus aloitettu; 2h
