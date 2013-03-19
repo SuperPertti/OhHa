@@ -7,3 +7,5 @@ on tarkoitus ett‰ vain j‰senrekisterin hoitaja sek‰ sihteeri p‰‰sev‰t lukemaan s
 p‰ivitt‰m‰‰n tietoja, joten monenlaiselle k‰ytt‰j‰lle ei ole tarvetta.
 J‰rjestelm‰ vaatii kuitenkin kirjautumisen (k‰ytt‰j‰tunnus ja salasana) jotta ulkopuoliset
 eiv‰t n‰e tietoja.
+
+asd
