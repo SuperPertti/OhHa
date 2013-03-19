@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="2" hostname="Pertti-LAPTOP" name="LPKJasenrekisteriTest" tests="9" time="0.148" timestamp="2013-03-19T16:20:37">
+<testsuite errors="0" failures="0" hostname="Pertti-LAPTOP" name="LPKJasenrekisteriTest" tests="10" time="0.092" timestamp="2013-03-19T16:43:46">
   <properties>
     <property name="netbeans.autoupdate.country" value="FI" />
     <property name="nb.wait.for.caches" value="true" />
@@ -41,7 +41,7 @@
     <property name="copylibs.rebase" value="true" />
     <property name="manifest.available+main.class" value="true" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner LPKJasenrekisteriTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Pertti\OhHa\LPKJasenrekisteri\build\test\results\TEST-LPKJasenrekisteriTest.xml crashfile=C:\Users\Pertti\OhHa\LPKJasenrekisteri\build\junitvmwatcher2548369403967633884.properties propsfile=C:\Users\Pertti\OhHa\LPKJasenrekisteri\build\junit5991498527108262085.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner LPKJasenrekisteriTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Pertti\OhHa\LPKJasenrekisteri\build\test\results\TEST-LPKJasenrekisteriTest.xml crashfile=C:\Users\Pertti\OhHa\LPKJasenrekisteri\build\junitvmwatcher6423873499740423895.properties propsfile=C:\Users\Pertti\OhHa\LPKJasenrekisteri\build\junit1060848485132555773.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -291,27 +291,28 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
-  <testcase classname="LPKJasenrekisteriTest" name="syntymaaikaOikein" time="0.006" />
-  <testcase classname="LPKJasenrekisteriTest" name="syntymaaikaOikein2" time="0.001" />
-  <testcase classname="LPKJasenrekisteriTest" name="syntymaaikaOikein3" time="0.001" />
-  <testcase classname="LPKJasenrekisteriTest" name="syntymavuodenTarkistusToimiiNegatiivisella" time="0.0" />
-  <testcase classname="LPKJasenrekisteriTest" name="syntymavuodenTarkistusToimiiTulevaisuudelle" time="0.001" />
+  <testcase classname="LPKJasenrekisteriTest" name="syntymavuodenTarkistusToimiiNegatiivisella" time="0.004" />
+  <testcase classname="LPKJasenrekisteriTest" name="syntymavuodenTarkistusToimiiTulevaisuudelle" time="0.0" />
   <testcase classname="LPKJasenrekisteriTest" name="syntymapaivanTarkistusToimiiNegatiivisella" time="0.0" />
-  <testcase classname="LPKJasenrekisteriTest" name="syntymapaivanTarkistusToimiiTulevaisuudelle" time="0.008">
-    <failure message="expected:&lt;false&gt; but was:&lt;true&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;false&gt; but was:&lt;true&gt;
-	at LPKJasenrekisteriTest.syntymapaivanTarkistusToimiiTulevaisuudelle(LPKJasenrekisteriTest.java:100)
-</failure>
-  </testcase>
-  <testcase classname="LPKJasenrekisteriTest" name="syntymakuukaudenTarkistusToimiiTulevaisuudelle" time="0.003">
-    <failure message="expected:&lt;false&gt; but was:&lt;true&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;false&gt; but was:&lt;true&gt;
-	at LPKJasenrekisteriTest.syntymakuukaudenTarkistusToimiiTulevaisuudelle(LPKJasenrekisteriTest.java:88)
-</failure>
-  </testcase>
+  <testcase classname="LPKJasenrekisteriTest" name="syntymapaivanTarkistusToimiiTulevaisuudelle" time="0.0" />
+  <testcase classname="LPKJasenrekisteriTest" name="syntymaaikaTallentuuOikein" time="0.0" />
+  <testcase classname="LPKJasenrekisteriTest" name="syntymaaikaTallentuuOikein2" time="0.001" />
+  <testcase classname="LPKJasenrekisteriTest" name="syntymaaikaTallentuuOikein3" time="0.001" />
+  <testcase classname="LPKJasenrekisteriTest" name="syntymaajanMuuttaminen" time="0.001" />
+  <testcase classname="LPKJasenrekisteriTest" name="syntymakuukaudenTarkistusToimiiTulevaisuudelle" time="0.001" />
   <testcase classname="LPKJasenrekisteriTest" name="syntymakuukaudenTarkistusToimiiNegatiivisella" time="0.0" />
-  <system-out><![CDATA[Syntymäajassa jotain feelua...
-Syntymäajassa jotain feelua...
-Syntymäajassa jotain feelua...
-Syntymäajassa jotain feelua...
+  <system-out><![CDATA[Jotain feelua syntymäajassa
+Jotain feelua syntymäajassa
+Jotain feelua syntymäajassa
+Jotain feelua syntymäajassa
+Jotain feelua syntymäajassa
+Jotain feelua syntymäajassa
+Jotain feelua syntymäajassa
+Jotain feelua syntymäajassa
+Jotain feelua syntymäajassa
+Jotain feelua syntymäajassa
+Jotain feelua syntymäajassa
+Jotain feelua syntymäajassa
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

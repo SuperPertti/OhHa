@@ -11,9 +11,7 @@ public class Syntymaaika {
         this.vuosi = vuosi;
         this.kuukausi = kuukausi;
         this.paiva = paiva;
-        if(!tarkastaSyntymaaika()){
-            System.out.println("Syntymäajassa jotain feelua...");
-        }
+        tarkastaSyntymaaika();
     }
 
     public int getVuosi() {
@@ -62,6 +60,9 @@ public class Syntymaaika {
            && kuukausi==Calendar.getInstance().get(Calendar.MONTH)+1
            && paiva>Calendar.getInstance().get(Calendar.DATE)){
             aikaOikein=false;
+        }
+        if(!aikaOikein){
+            System.out.println("Jotain feelua syntymäajassa");
         }
         return aikaOikein;
     }

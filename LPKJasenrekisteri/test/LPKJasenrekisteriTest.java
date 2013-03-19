@@ -2,7 +2,6 @@
 
 import java.util.Calendar;
 import lpkjasenrekisteri.Syntymaaika;
-import lpkjasenrekisteri.Henkilo;
 
 
 import org.junit.After;
@@ -38,7 +37,7 @@ public class LPKJasenrekisteriTest {
     }
 
      @Test
-     public void syntymaaikaOikein() {
+     public void syntymaaikaTallentuuOikein() {
         Syntymaaika SA = new Syntymaaika(1990,1,1);
         assertEquals(1990, SA.getVuosi());
         assertEquals(1, SA.getKuukausi());
@@ -47,7 +46,7 @@ public class LPKJasenrekisteriTest {
      }
      
      @Test
-     public void syntymaaikaOikein2() {
+     public void syntymaaikaTallentuuOikein2() {
         Syntymaaika SA = new Syntymaaika(Calendar.getInstance().get(Calendar.YEAR),Calendar.getInstance().get(Calendar.MONTH)+1,Calendar.getInstance().get(Calendar.DATE));
         assertEquals(Calendar.getInstance().get(Calendar.YEAR), SA.getVuosi());
         assertEquals(Calendar.getInstance().get(Calendar.MONTH)+1, SA.getKuukausi());
@@ -56,11 +55,11 @@ public class LPKJasenrekisteriTest {
       }
      
      @Test
-     public void syntymaaikaOikein3() {
-        Syntymaaika SA = new Syntymaaika(1932,11,27);
-        assertEquals(1932, SA.getVuosi());
-        assertEquals(11, SA.getKuukausi());
-        assertEquals(27, SA.getPaiva());
+     public void syntymaaikaTallentuuOikein3() {
+        Syntymaaika SA = new Syntymaaika(1900, 12, 31);
+        assertEquals(1900, SA.getVuosi());
+        assertEquals(12, SA.getKuukausi());
+        assertEquals(31, SA.getPaiva());
         assertEquals(true, SA.tarkastaSyntymaaika());
       }
      
@@ -84,7 +83,7 @@ public class LPKJasenrekisteriTest {
       
       @Test
      public void syntymakuukaudenTarkistusToimiiTulevaisuudelle() {
-          Syntymaaika SA = new Syntymaaika(1990, Calendar.getInstance().get(Calendar.MONTH)+2,1);
+          Syntymaaika SA = new Syntymaaika(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH)+2,1);
           assertEquals(false, SA.tarkastaSyntymaaika());
       }
     
@@ -96,7 +95,18 @@ public class LPKJasenrekisteriTest {
       
       @Test
      public void syntymapaivanTarkistusToimiiTulevaisuudelle() {
-          Syntymaaika SA = new Syntymaaika(1990, 1, Calendar.getInstance().get(Calendar.DATE)+1);
+          Syntymaaika SA = new Syntymaaika(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH)+1,Calendar.getInstance().get(Calendar.DATE)+1);
           assertEquals(false, SA.tarkastaSyntymaaika());
+      }
+      
+      @Test
+      public void syntymaajanMuuttaminen(){
+          Syntymaaika SA = new Syntymaaika(1990,1,1);
+          SA.setVuosi(1900);
+          SA.setKuukausi(3);
+          SA.setPaiva(15);
+          assertEquals(1900, SA.getVuosi());
+          assertEquals(3, SA.getKuukausi());
+          assertEquals(15, SA.getPaiva());
       }
 }
