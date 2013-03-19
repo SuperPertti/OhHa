@@ -5,10 +5,9 @@ public class LPKJasenrekisteri {
 
     public static void main(String[] args) {
         
-        System.out.println("");
+        System.out.println("Joou, hiano ohjelma");
         
-        Henkilo Kalle = new Henkilo("Kalle Könnilä", 1990, 1, 1);
-        Ryhma Karhut = new Ryhma ("Karhut");
+        Henkilo Kalle = new Henkilo("Kalle Könnilä", 2013, 4, 1);
         System.out.println(Kalle);
     }
 }
