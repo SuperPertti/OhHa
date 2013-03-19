@@ -15,9 +15,9 @@ import static org.junit.Assert.*;
  *
  * @author Pertti
  */
-public class LPKJasenrekisteriTest {
+public class SyntymaaikaTest {
     
-    public LPKJasenrekisteriTest() {
+    public SyntymaaikaTest() {
     }
     
     @BeforeClass
