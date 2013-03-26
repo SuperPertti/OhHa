@@ -1,13 +1,23 @@
 
 package lpkjasenrekisteri;
 
-public class LPKJasenrekisteri {
+import java.util.ArrayList;
 
-    public static void main(String[] args) {
-        
-        System.out.println("Joou, hiano ohjelma");
-        
-        Henkilo Kalle = new Henkilo("Kalle Könnilä", 1900, 12, 31);
-        System.out.println(Kalle);
+class LPKJasenrekisteri {
+    private Muisti muisti;
+    private ArrayList<Henkilo> henkilot;
+    
+    public LPKJasenrekisteri (){
+        this.muisti = new Muisti();
+        this.henkilot = new ArrayList();
     }
+
+    void kaynnista() {
+        henkilot = muisti.lue();
+        for (Henkilo henkilo : henkilot) {
+            System.out.println(henkilo);
+        }
+        
+    }
+    
 }

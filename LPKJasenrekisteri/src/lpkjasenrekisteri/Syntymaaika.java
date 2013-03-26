@@ -6,11 +6,13 @@ public class Syntymaaika {
     private int vuosi;
     private int kuukausi;
     private int paiva;
+    private String omistaja;
 
-    public Syntymaaika(int vuosi, int kuukausi, int paiva) {
+    public Syntymaaika(int vuosi, int kuukausi, int paiva, String nimi) {
         this.vuosi = vuosi;
         this.kuukausi = kuukausi;
         this.paiva = paiva;
+        this.omistaja = nimi;
         tarkastaSyntymaaika();
     }
 
@@ -62,7 +64,7 @@ public class Syntymaaika {
             aikaOikein=false;
         }
         if(!aikaOikein){
-            System.out.println("Jotain feelua syntymäajassa");
+            System.out.println("Jotain feelua syntymäajassa henkilöllä: "+omistaja);
         }
         return aikaOikein;
     }

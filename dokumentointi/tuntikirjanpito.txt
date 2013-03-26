@@ -1,2 +1,4 @@
 12.3.2013: GitHubin käytön opettelu, ensimmäiset tehtävät; 2h
 13.3.2013: Lisää UML ja koodaus aloitettu; 2h
+19.3.2013: Testien aloittaminen, ohjelmanrakenteen suunniteelu: 4h
+26.3.2013: luokkien lisäys:
