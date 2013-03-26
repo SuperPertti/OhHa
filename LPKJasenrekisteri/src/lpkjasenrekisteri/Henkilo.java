@@ -27,7 +27,11 @@ public class Henkilo {
 
     @Override
     public String toString() {
-        return nimi+", "+syntymaaika.getPaiva()+"."+syntymaaika.getKuukausi()+"."+syntymaaika.getVuosi();
+        return nimi+", "+syntymaaika.getPaiva()+"."+syntymaaika.getKuukausi()+"."+syntymaaika.getVuosi()+", ryhma "+ryhma;
+    }
+
+    public String getRyhma() {
+        return ryhma;
     }
 
 }

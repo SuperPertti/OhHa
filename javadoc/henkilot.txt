@@ -1,2 +1,1 @@
-Pertti Itavuori;29:5:1990;Johtajat
-ppp;0:0:0;asd
+pertti;1:1:1;asd

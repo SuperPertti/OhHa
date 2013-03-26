@@ -2,15 +2,19 @@
 package lpkjasenrekisteri;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
+
 class Muisti {
     private Scanner lukija;
+    private File tiedosto;
 
     public Muisti(){
-        File tiedosto = new File("C:/Users/Pertti/OhHa/OhHa/javadoc/henkilot.txt");
+        this.tiedosto = new File("C:/Users/Pertti/OhHa/OhHa/javadoc/henkilot.txt");
         
         try {
         this.lukija = new Scanner(tiedosto, "UTF-8");
@@ -42,6 +46,16 @@ class Muisti {
         return henkilot;
         
     }
+
+    void tallenna(ArrayList<Henkilo> henkilot) throws IOException {     
+        FileWriter kirjoittaja = new FileWriter(tiedosto);
+        kirjoittaja.flush();
+        for (Henkilo henkilo : henkilot) {
+            kirjoittaja.write(henkilo.getNimi()+";"+henkilo.getSyntymaaika().getPaiva()+":"+henkilo.getSyntymaaika().getKuukausi()+":"+henkilo.getSyntymaaika().getVuosi()+";"+henkilo.getRyhma());
+        }
+        kirjoittaja.close();
+    }
+
     
     
 }
