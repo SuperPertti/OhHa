@@ -1,2 +1,0 @@
-pertti;1:1:1987;asd
-paavo;2:4:1964;qwerty

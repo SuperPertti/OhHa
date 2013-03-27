@@ -54,10 +54,18 @@ class LPKJasenrekisteri {
         
         loppusanat();
     }
+    
+    private void tervehdys() {
+        System.out.print("Teretulemast käyttämään AWESOME LPKJäsenrekisteri -ohjelmaa!"
+                + "\nLet's see..."
+                + "\n----------"
+                + "\n");
+    }
 
     private void lisaa() {
         System.out.print("Anna henkilön nimi: ");
         String nimi = lukija.nextLine();
+        
         System.out.print("Anna henkilön syntymapaiva (*paiva*:*kuukausi*:*vuosi*): ");
         String [] syntymaaika = lukija.nextLine().split(":");
         
@@ -69,25 +77,22 @@ class LPKJasenrekisteri {
             henkilot.add(new Henkilo(nimi,Integer.parseInt(syntymaaika[2]),Integer.parseInt(syntymaaika[1]),Integer.parseInt(syntymaaika[0]), ryhma));
         muutokset.add("Henkilö "+nimi+" lisätty.");
         System.out.print("Henkilö "+nimi+" lisätty."
-                + "\nMuista että muutokset eivät ole pysyviä enne tallennusta."
+                + "\nMuutokset eivät ole pysyviä ohjelman sulkemisen jälkeen ilman tallennusta."
                 + "\n");
         } catch(Exception e){
-            System.out.println("Henkilön lissäys meni pielleen, ou noou...");
+            System.out.println("Henkilön lissäys meni pielleen, ou noou: "+e.getMessage());
         }
-        
     }
 
-    private void tervehdys() {
-        System.out.print("Teretulemast käyttämään AWESOME LPKJäsenrekisteri -ohjelmaa!"
-                + "\nLet's see..."
-                + "\n----------"
-                + "\n");
-    }
-    
     private void poista() {
+        if(henkilot.isEmpty()){
+            System.out.println("Ei jäsenia listalla");
+            return;
+        }
         String poistettava = "";
         boolean listalla = false;
         String poistetaanko = "";
+        String jatketaanko = "";
         while(!listalla){
             System.out.print("Anna poistettavan henkilön nimi: ");
             poistettava = lukija.nextLine();
@@ -99,6 +104,7 @@ class LPKJasenrekisteri {
                             + "\nPoistetaanko varmasti? Y/N :");
                     poistetaanko = lukija.nextLine();
                     if (poistetaanko.equals("Y")){
+                        muutokset.add("Henkilö"+henkilo.getNimi()+"poistettu.");
                         henkilot.remove(henkilo);
                     }
                     }
@@ -106,7 +112,11 @@ class LPKJasenrekisteri {
             }
             if(!listalla){
                 System.out.print("Antamaasi henkilöä ei ole listalla. Kirjoititko nimen oikein?"
-                        + "\n");
+                        + "\nAnna uusi nimi? Y/N :");
+                jatketaanko = lukija.nextLine();
+                if(jatketaanko.equals("N")){
+                    return;
+                }
             }
         }
         
@@ -150,6 +160,8 @@ class LPKJasenrekisteri {
     }
     
     private void loppusanat() {
+        System.out.println("Tallennetaampa enne lopetusta...");
+        tallenna();
         System.out.println("\nKiva kun lopetit, ei siuu ois enää kestänykkää");;
     }
     
