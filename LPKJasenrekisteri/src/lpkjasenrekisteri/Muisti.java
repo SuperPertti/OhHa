@@ -14,7 +14,7 @@ class Muisti {
     private File tiedosto;
 
     public Muisti(){
-        this.tiedosto = new File("C:/Users/Pertti/OhHa/OhHa/javadoc/henkilot.txt");
+        this.tiedosto = new File("./muisti/henkilot.txt");
         
         try {
         this.lukija = new Scanner(tiedosto, "UTF-8");

@@ -3,7 +3,6 @@ package lpkjasenrekisteri;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,23 +28,22 @@ class LPKJasenrekisteri {
         while(!komento.equals("lopeta")){
             System.out.print("Komennot:"
                     + "\n\tlisaa - lisää henkilö rekisteriin"
+                    + "\n\tpoista - poistaa henkilön rekisteristä" //kesken
                     + "\n\tjasenet - näyttää listatut jäsenet"
                     + "\n\ttallenna - tallentaa muutokset pysyvästi"
                     + "\n\tlopeta - sulkee ohjelman"
                     + "\n"
                     + "\nAnna komento:");
             komento = lukija.nextLine();
+            System.out.print("\n");
             
             if(komento.equals("lisaa")){
-                System.out.print("\n");
                 lisaa();
             }
             if(komento.equals("jasenet")){
-                System.out.print("\n");
                 naytaJasenet();
             }
             if(komento.equals("tallenna")){
-                System.out.print("\n");
                 tallenna();
             }
             System.out.println("-----");
