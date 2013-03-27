@@ -51,7 +51,7 @@ class Muisti {
         FileWriter kirjoittaja = new FileWriter(tiedosto);
         kirjoittaja.flush();
         for (Henkilo henkilo : henkilot) {
-            kirjoittaja.write(henkilo.getNimi()+";"+henkilo.getSyntymaaika().getPaiva()+":"+henkilo.getSyntymaaika().getKuukausi()+":"+henkilo.getSyntymaaika().getVuosi()+";"+henkilo.getRyhma());
+            kirjoittaja.write(henkilo.getNimi()+";"+henkilo.getSyntymaaika().getPaiva()+":"+henkilo.getSyntymaaika().getKuukausi()+":"+henkilo.getSyntymaaika().getVuosi()+";"+henkilo.getRyhma()+"\n");
         }
         kirjoittaja.close();
     }

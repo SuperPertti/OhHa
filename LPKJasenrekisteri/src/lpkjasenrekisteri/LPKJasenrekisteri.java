@@ -28,7 +28,7 @@ class LPKJasenrekisteri {
         while(!komento.equals("lopeta")){
             System.out.print("Komennot:"
                     + "\n\tlisaa - lisää henkilö rekisteriin"
-                    + "\n\tpoista - poistaa henkilön rekisteristä" //kesken
+                    + "\n\tpoista - poistaa henkilön rekisteristä"
                     + "\n\tjasenet - näyttää listatut jäsenet"
                     + "\n\ttallenna - tallentaa muutokset pysyvästi"
                     + "\n\tlopeta - sulkee ohjelman"
@@ -39,6 +39,9 @@ class LPKJasenrekisteri {
             
             if(komento.equals("lisaa")){
                 lisaa();
+            }
+            if(komento.equals("poista")){
+                poista();
             }
             if(komento.equals("jasenet")){
                 naytaJasenet();
@@ -57,19 +60,21 @@ class LPKJasenrekisteri {
         String nimi = lukija.nextLine();
         System.out.print("Anna henkilön syntymapaiva (*paiva*:*kuukausi*:*vuosi*): ");
         String [] syntymaaika = lukija.nextLine().split(":");
+        
         System.out.print("Aseta henkilö ryhmään: ");
         String ryhma = lukija.nextLine();
         System.out.print("\n");
         
-        henkilot.add(new Henkilo(nimi,Integer.parseInt(syntymaaika[2]),Integer.parseInt(syntymaaika[1]),Integer.parseInt(syntymaaika[0]), ryhma));
+        try{
+            henkilot.add(new Henkilo(nimi,Integer.parseInt(syntymaaika[2]),Integer.parseInt(syntymaaika[1]),Integer.parseInt(syntymaaika[0]), ryhma));
         muutokset.add("Henkilö "+nimi+" lisätty.");
         System.out.print("Henkilö "+nimi+" lisätty."
                 + "\nMuista että muutokset eivät ole pysyviä enne tallennusta."
                 + "\n");
-    }
-
-    private void loppusanat() {
-        System.out.println("\nKiva kun lopetit, ei siuu ois enää kestänykkää");;
+        } catch(Exception e){
+            System.out.println("Henkilön lissäys meni pielleen, ou noou...");
+        }
+        
     }
 
     private void tervehdys() {
@@ -78,8 +83,40 @@ class LPKJasenrekisteri {
                 + "\n----------"
                 + "\n");
     }
+    
+    private void poista() {
+        String poistettava = "";
+        boolean listalla = false;
+        String poistetaanko = "";
+        while(!listalla){
+            System.out.print("Anna poistettavan henkilön nimi: ");
+            poistettava = lukija.nextLine();
+            for (Henkilo henkilo : henkilot) {
+                if(henkilo.getNimi().equals(poistettava)){
+                    listalla = true;
+                    while (!poistetaanko.equals("Y") && !poistetaanko.equals("N")){
+                    System.out.print("Henkilö '"+poistettava+"' löytyi!"
+                            + "\nPoistetaanko varmasti? Y/N :");
+                    poistetaanko = lukija.nextLine();
+                    if (poistetaanko.equals("Y")){
+                        henkilot.remove(henkilo);
+                    }
+                    }
+                }
+            }
+            if(!listalla){
+                System.out.print("Antamaasi henkilöä ei ole listalla. Kirjoititko nimen oikein?"
+                        + "\n");
+            }
+        }
+        
+    }
 
     private void naytaJasenet() {
+        if(henkilot.isEmpty()){
+            System.out.println("Ei oole jaasenia.");
+            return;
+        }
         for (Henkilo henkilo : henkilot) {
             System.out.println(henkilo);
         }
@@ -89,6 +126,12 @@ class LPKJasenrekisteri {
     private void tallenna() {
         String komento = "";
         System.out.print("Olet tallentamassa tekemiäsi muutoksia:\n");
+        
+        if(muutokset.isEmpty()){
+            System.out.println("Ei muutoksia.");
+            return;
+        }
+        
         for (String muutos : muutokset) {
             System.out.println("\t"+muutos);
         }
@@ -97,12 +140,17 @@ class LPKJasenrekisteri {
         komento = lukija.nextLine();
         }
         if(komento.equals("Y")){
+            muutokset.clear();
             try {
                 muisti.tallenna(henkilot);
             } catch (IOException ex) {
                 Logger.getLogger(LPKJasenrekisteri.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+    
+    private void loppusanat() {
+        System.out.println("\nKiva kun lopetit, ei siuu ois enää kestänykkää");;
     }
     
 }
