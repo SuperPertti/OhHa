@@ -104,8 +104,9 @@ class LPKJasenrekisteri {
                             + "\nPoistetaanko varmasti? Y/N :");
                     poistetaanko = lukija.nextLine();
                     if (poistetaanko.equals("Y")){
-                        muutokset.add("Henkilö"+henkilo.getNimi()+"poistettu.");
+                        muutokset.add("Henkilö "+henkilo.getNimi()+" poistettu.");
                         henkilot.remove(henkilo);
+                        return;
                     }
                     }
                 }

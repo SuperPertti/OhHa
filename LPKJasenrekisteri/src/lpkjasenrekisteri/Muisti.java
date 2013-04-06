@@ -2,6 +2,7 @@
 package lpkjasenrekisteri;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -14,24 +15,24 @@ class Muisti {
 
     public Muisti(){
         this.tiedosto = new File("./muisti/henkilot.txt");
-        
-        try{
-            this.kirjoittaja = new PrintWriter(tiedosto);
-        }catch(Exception b){
-            System.out.println("virhe: "+b.getMessage());
-        }
     }
     
     public ArrayList lue (){
+        ArrayList<Henkilo> henkilot = new ArrayList();
         Scanner lukija;
+          
         try {
             lukija = new Scanner(tiedosto);
-        } catch (Exception e){
-            System.out.println("Tiedoston lukemisessa virhe: " + e.getMessage());
-            return null;
+        } catch (FileNotFoundException ex) {
+            System.out.println("ei aikaisempaa tallennusta. Luodaan uusi tiedosto");
+            luoTiedosto();
+            return henkilot;
         }
-        ArrayList<Henkilo> henkilot = new ArrayList();
-
+        catch (Exception e){
+            System.out.println("Tiedoston lukemisessa virhe: " + e.getMessage());
+            return henkilot;
+        }
+        
         while(lukija.hasNextLine()){
             try{
             String rivi = lukija.nextLine();
@@ -56,10 +57,20 @@ class Muisti {
     }
 
     void tallenna(ArrayList<Henkilo> henkilot) throws IOException {
+        kirjoittaja = new PrintWriter(tiedosto);
         for (Henkilo henkilo : henkilot) {
             kirjoittaja.write(henkilo.getNimi()+";"+henkilo.getSyntymaaika().getPaiva()+":"+henkilo.getSyntymaaika().getKuukausi()+":"+henkilo.getSyntymaaika().getVuosi()+";"+henkilo.getRyhma()+""
                     + "\n");
         }
         kirjoittaja.close();
+    }
+
+    private void luoTiedosto(){
+        try {
+            kirjoittaja = new PrintWriter(tiedosto);
+        } catch (Exception c){
+            System.out.println("Tiedoston luonnissa ongelma.");
+        }
+        
     }
 }
