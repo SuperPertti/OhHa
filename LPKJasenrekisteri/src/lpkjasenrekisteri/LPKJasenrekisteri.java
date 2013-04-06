@@ -164,5 +164,4 @@ class LPKJasenrekisteri {
         tallenna();
         System.out.println("\nKiva kun lopetit, ei siuu ois enää kestänykkää");;
     }
-    
 }

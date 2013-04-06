@@ -2,7 +2,6 @@
 package lpkjasenrekisteri;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -15,6 +14,7 @@ class Muisti {
 
     public Muisti(){
         this.tiedosto = new File("./muisti/henkilot.txt");
+        
         try{
             this.kirjoittaja = new PrintWriter(tiedosto);
         }catch(Exception b){
