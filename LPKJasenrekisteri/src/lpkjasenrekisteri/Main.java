@@ -1,11 +1,13 @@
 
 package lpkjasenrekisteri;
 
+import javax.swing.SwingUtilities;
+
 public class Main {
 
     public static void main(String[] args){
         
-        LPKJasenrekisteri kava = new LPKJasenrekisteri();
-        kava.kaynnista();
+        Kayttoliittyma kayttis = new Kayttoliittyma();
+        SwingUtilities.invokeLater(kayttis);
     }
 }
