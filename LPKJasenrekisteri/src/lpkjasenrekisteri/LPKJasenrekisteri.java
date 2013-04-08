@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class LPKJasenrekisteri {
+public class LPKJasenrekisteri {
     private Muisti muisti;
     private ArrayList<Henkilo> henkilot;
     private ArrayList<String> muutokset;
@@ -37,17 +37,18 @@ class LPKJasenrekisteri {
             komento = lukija.nextLine();
             System.out.print("\n");
             
-            if(komento.equals("lisaa")){
-                lisaa();
-            }
-            if(komento.equals("poista")){
-                poista();
-            }
-            if(komento.equals("jasenet")){
-                naytaJasenet();
-            }
-            if(komento.equals("tallenna")){
-                tallenna();
+            switch(komento){
+                case "lisaa":
+                   lisaa();
+                    
+                case "posta":
+                    poista();
+                    
+                case "jasenet":
+                    getJasenet();
+                    
+                case "tallenna":
+                    tallenna();
             }
             System.out.println("-----");
         }
@@ -123,15 +124,15 @@ class LPKJasenrekisteri {
         
     }
 
-    private void naytaJasenet() {
+    public String getJasenet() {
+        String jasenet=null;
         if(henkilot.isEmpty()){
-            System.out.println("Ei oole jaasenia.");
-            return;
+            return "Ei jäseniä listassa";
         }
         for (Henkilo henkilo : henkilot) {
-            System.out.println(henkilo);
+            jasenet+=henkilo+"\n";
         }
-        System.out.print("\n");
+        return jasenet;
     }
 
     private void tallenna() {
