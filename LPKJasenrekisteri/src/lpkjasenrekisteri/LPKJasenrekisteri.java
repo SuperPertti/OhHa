@@ -20,7 +20,7 @@ public class LPKJasenrekisteri {
         this.lukija = new Scanner(System.in);
     }
 
-    void kaynnista() {
+    public void kaynnista() {
         tervehdys();
         henkilot = muisti.lue();
         String komento = "";

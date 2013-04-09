@@ -45,22 +45,27 @@ public class Kayttoliittyma implements Runnable {
         JTextArea tekstikentta = new JTextArea ();
         tekstikentta.setPreferredSize(new Dimension(200,25));
         
-        naytaJasenet.addActionListener(new Kuuntelija(rekisteri, tekstikentta));
+        JButton lisaaJasen = new JButton("Lisää jäsen");
+        lisaaJasen.addActionListener(new Kuuntelija(rekisteri, tekstikentta, lisaaJasen));
+        
+        
+        naytaJasenet.addActionListener(new Kuuntelija(rekisteri, tekstikentta, naytaJasenet));
         
         layout.putConstraint(SpringLayout.WEST, teksti, 5, SpringLayout.WEST, container);        
         layout.putConstraint(SpringLayout.NORTH, naytaJasenet, 20, SpringLayout.SOUTH, teksti);      
         layout.putConstraint(SpringLayout.WEST, tekstikentta, 5, SpringLayout.EAST, naytaJasenet);
         layout.putConstraint(SpringLayout.NORTH, tekstikentta, 20, SpringLayout.SOUTH, teksti);
+        layout.putConstraint(SpringLayout.WEST, lisaaJasen, 5, SpringLayout.WEST, container);
+        layout.putConstraint(SpringLayout.NORTH, lisaaJasen, 5, SpringLayout.SOUTH, naytaJasenet);
         
         container.add(teksti);
         container.add(naytaJasenet);
         container.add(tekstikentta);
-        
-        
-        
+        container.add(lisaaJasen);  
     }
 
     public JFrame getFrame() {
         return frame;
     }
+    
 }

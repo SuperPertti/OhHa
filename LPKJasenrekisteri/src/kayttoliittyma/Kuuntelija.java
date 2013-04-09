@@ -16,15 +16,20 @@ import lpkjasenrekisteri.LPKJasenrekisteri;
 public class Kuuntelija implements ActionListener {
     private LPKJasenrekisteri rekisteri;
     private JTextArea jasenet;
+    private Object o;
     
-    public Kuuntelija (LPKJasenrekisteri rekisteri, JTextArea jasenet){
+    public Kuuntelija (LPKJasenrekisteri rekisteri, JTextArea jasenet, Object o){
         this.rekisteri = rekisteri;
         this.jasenet = jasenet;
+        this.o = o;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        jasenet.setText(rekisteri.getJasenet());
+        if(e.getSource().equals(o)){
+            jasenet.setText(rekisteri.getJasenet());
+        }
+        
     }
     
 }
