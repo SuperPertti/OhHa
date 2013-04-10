@@ -37,31 +37,37 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private void luoKomponentit(Container container) {
-        SpringLayout layout = new SpringLayout();
-        container.setLayout(layout);
+        SpringLayout mainLayout = new SpringLayout();
+        container.setLayout(mainLayout);
+        Container pelikentta = new Container();
+        BoxLayout peliLayout = new BoxLayout(pelikentta, BoxLayout.Y_AXIS);
+        pelikentta.setLayout(peliLayout);
+        
         
         JLabel teksti = new JLabel ("Lippukunnan jäsenrekisteri ohjelma ver.0.1");
+        
         JButton naytaJasenet = new JButton ("Näytä jäsenet");
+        JButton lisaaJasen = new JButton("Lisää jäsen");
+        
         JTextArea tekstikentta = new JTextArea ();
         tekstikentta.setPreferredSize(new Dimension(200,25));
         
-        JButton lisaaJasen = new JButton("Lisää jäsen");
-        lisaaJasen.addActionListener(new Kuuntelija(rekisteri, tekstikentta, lisaaJasen));
+        Kuuntelija kuuntelija = new Kuuntelija(rekisteri, pelikentta, tekstikentta, lisaaJasen, naytaJasenet); //Kaikki napit ja nupit samaan kuuntelijaan
+        lisaaJasen.addActionListener(kuuntelija);
+        naytaJasenet.addActionListener(kuuntelija);
         
-        
-        naytaJasenet.addActionListener(new Kuuntelija(rekisteri, tekstikentta, naytaJasenet));
-        
-        layout.putConstraint(SpringLayout.WEST, teksti, 5, SpringLayout.WEST, container);        
-        layout.putConstraint(SpringLayout.NORTH, naytaJasenet, 20, SpringLayout.SOUTH, teksti);      
-        layout.putConstraint(SpringLayout.WEST, tekstikentta, 5, SpringLayout.EAST, naytaJasenet);
-        layout.putConstraint(SpringLayout.NORTH, tekstikentta, 20, SpringLayout.SOUTH, teksti);
-        layout.putConstraint(SpringLayout.WEST, lisaaJasen, 5, SpringLayout.WEST, container);
-        layout.putConstraint(SpringLayout.NORTH, lisaaJasen, 5, SpringLayout.SOUTH, naytaJasenet);
+        mainLayout.putConstraint(SpringLayout.WEST, teksti, 5, SpringLayout.WEST, container);        
+        mainLayout.putConstraint(SpringLayout.NORTH, naytaJasenet, 20, SpringLayout.SOUTH, teksti);      
+        mainLayout.putConstraint(SpringLayout.WEST, pelikentta, 5, SpringLayout.EAST, naytaJasenet);
+        mainLayout.putConstraint(SpringLayout.NORTH, pelikentta, 20, SpringLayout.SOUTH, teksti);
+        mainLayout.putConstraint(SpringLayout.WEST, lisaaJasen, 5, SpringLayout.WEST, container);
+        mainLayout.putConstraint(SpringLayout.NORTH, lisaaJasen, 5, SpringLayout.SOUTH, naytaJasenet);
         
         container.add(teksti);
         container.add(naytaJasenet);
-        container.add(tekstikentta);
-        container.add(lisaaJasen);  
+        container.add(lisaaJasen);
+        
+        container.add(pelikentta);
     }
 
     public JFrame getFrame() {

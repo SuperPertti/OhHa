@@ -1,34 +1,46 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package kayttoliittyma;
 
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JTextArea;
 import lpkjasenrekisteri.LPKJasenrekisteri;
 
-/**
- *
- * @author Pertti
- */
+
 public class Kuuntelija implements ActionListener {
     private LPKJasenrekisteri rekisteri;
-    private JTextArea jasenet;
-    private Object o;
+    private JTextArea tekstikentta;
+    private JButton lisaaJasen;
+    private JButton naytaJasenet;
+    private Container pelikentta;
     
-    public Kuuntelija (LPKJasenrekisteri rekisteri, JTextArea jasenet, Object o){
+    Kuuntelija(LPKJasenrekisteri rekisteri, Container pelikentta, JTextArea tekstikentta, JButton lisaaJasen, JButton naytaJasenet) {
         this.rekisteri = rekisteri;
-        this.jasenet = jasenet;
-        this.o = o;
+        this.pelikentta = pelikentta;
+        this.tekstikentta = tekstikentta;
+        this.lisaaJasen = lisaaJasen;
+        this.naytaJasenet = naytaJasenet;
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals(o)){
-            jasenet.setText(rekisteri.getJasenet());
+        if(e.getSource().equals(naytaJasenet)){
+            pelikentta.removeAll();
+            tekstikentta.setText(rekisteri.getJasenet());
+            
+            pelikentta.add(tekstikentta);
+            
         }
+        if(e.getSource().equals(lisaaJasen)){
+            pelikentta.removeAll();
+            JButton nappi = new JButton("joou");
+            
+            pelikentta.add(nappi);
+        }
+        
         
     }
     

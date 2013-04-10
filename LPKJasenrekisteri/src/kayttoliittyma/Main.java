@@ -14,8 +14,8 @@ public class Main {
         Kayttoliittyma kayttis = new Kayttoliittyma();
         SwingUtilities.invokeLater(kayttis);
         
-        Alkuikkuna alkuikkuna = new Alkuikkuna();
-        SwingUtilities.invokeLater(alkuikkuna);
+//        Alkuikkuna alkuikkuna = new Alkuikkuna();
+//        SwingUtilities.invokeLater(alkuikkuna);
         
         
     }
