@@ -28,17 +28,10 @@ public class Kuuntelija implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(naytaJasenet)){
-            pelikentta.removeAll();
-            tekstikentta.setText(rekisteri.getJasenet());
-            
-            pelikentta.add(tekstikentta);
-            
+            tekstikentta.setText(rekisteri.getJasenet());     
         }
         if(e.getSource().equals(lisaaJasen)){
-            pelikentta.removeAll();
             JButton nappi = new JButton("joou");
-            
-            pelikentta.add(nappi);
         }
         
         
