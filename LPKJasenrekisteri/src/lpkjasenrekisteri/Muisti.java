@@ -1,3 +1,6 @@
+/**
+ *Käsittelee tiedon lataamisen ja tallentamisen musitista
+ */
 
 package lpkjasenrekisteri;
 
@@ -17,6 +20,10 @@ class Muisti {
         this.tiedosto = new File("./muisti/henkilot.txt");
     }
     
+    /**
+     * lukee tekstitiedostosta tallennetut henkilöt tai luo uuden tiedoston
+     * @return palauttaa muistista luetun ArrayListin rekisterille tai tyhjän listan
+     */
     public ArrayList lue (){
         ArrayList<Henkilo> henkilot = new ArrayList();
         Scanner lukija;
@@ -55,7 +62,11 @@ class Muisti {
         lukija.close();
         return henkilot;    
     }
-
+/**
+ * ylikirjoittaa vanhan tektitiedoston rekisteriltä saaduilla henkilöillä
+ * @param henkilot
+ * @throws IOException 
+ */
     void tallenna(ArrayList<Henkilo> henkilot) throws IOException {
         kirjoittaja = new PrintWriter(tiedosto);
         for (Henkilo henkilo : henkilot) {
@@ -65,6 +76,9 @@ class Muisti {
         kirjoittaja.close();
     }
 
+    /**
+     * luo uuden tekstitiedoston
+     */
     private void luoTiedosto(){
         try {
             kirjoittaja = new PrintWriter(tiedosto);
