@@ -5,6 +5,7 @@ package lpkjasenrekisteri;
 
 
 public class Henkilo {
+    private String id;
     private String nimi;
     private Syntymaaika syntymaaika;
     private String ryhma;
