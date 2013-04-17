@@ -1,4 +1,6 @@
-
+/**
+ * rekisteriin tallennettavan henkilön tiedot
+ */
 package lpkjasenrekisteri;
 
 

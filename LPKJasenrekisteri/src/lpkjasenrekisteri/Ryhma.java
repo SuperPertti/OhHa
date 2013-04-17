@@ -1,4 +1,6 @@
-
+/**
+ * Luokka ei käytössä
+ */
 package lpkjasenrekisteri;
 
 import java.util.ArrayList;

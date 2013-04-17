@@ -1,3 +1,6 @@
+/**
+ * Henkilön syntymäaika
+ */
 package lpkjasenrekisteri;
 
 import java.util.Calendar;
@@ -42,7 +45,11 @@ public class Syntymaaika {
         tarkastaSyntymaaika();
         this.paiva = paiva;
     } 
-    
+    /**
+     * tarkastaa onko henkilön syntymäaika järkevä.
+     * Ei ota huomioon tiettyjen kuukausien päivien määrien eroja
+     * @return true jos syntymäaika järkevä, false jos ei ole järkevä
+     */
     public boolean tarkastaSyntymaaika() {
         boolean aikaOikein = true;
         if(vuosi<1900 || vuosi>Calendar.getInstance().get(Calendar.YEAR)){
