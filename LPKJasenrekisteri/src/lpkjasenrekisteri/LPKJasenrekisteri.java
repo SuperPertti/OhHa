@@ -1,3 +1,7 @@
+/**
+ * @author  Henri Österberg < xzero.muumimaailma@gmail.com > 
+ */
+
 
 package lpkjasenrekisteri;
 
@@ -62,7 +66,11 @@ public class LPKJasenrekisteri {
                 + "\n----------"
                 + "\n");
     }
-
+    
+/**
+ * kysyy lisättävän henkilön tiedot 
+ * ja lisää henkilön ArrayList henkilot:n
+ */
     private void lisaa() {
         System.out.print("Anna henkilön nimi: ");
         String nimi = lukija.nextLine();
@@ -84,7 +92,10 @@ public class LPKJasenrekisteri {
             System.out.println("Henkilön lissäys meni pielleen, ou noou: "+e.getMessage());
         }
     }
-
+/**
+ *kysyy henkilönn nimen
+ * ja poistaa henkilön ArrayList henkilot:sta
+ */
     private void poista() {
         if(henkilot.isEmpty()){
             System.out.println("Ei jäsenia listalla");
@@ -134,7 +145,10 @@ public class LPKJasenrekisteri {
         }
         return jasenet;
     }
-
+/**
+ * Kysyy tallennetaanko muutokse, mikäli muutoksia
+ * jos Y, syöttää ArrayList henkilot:n Muistille muisti.
+ */
     private void tallenna() {
         String komento = "";
         System.out.print("Olet tallentamassa tekemiäsi muutoksia:\n");
@@ -160,7 +174,9 @@ public class LPKJasenrekisteri {
             }
         }
     }
-    
+    /**
+     * Hyvästelee käyttäjän sanoin
+     */
     private void loppusanat() {
         System.out.println("Tallennetaampa enne lopetusta...");
         tallenna();
