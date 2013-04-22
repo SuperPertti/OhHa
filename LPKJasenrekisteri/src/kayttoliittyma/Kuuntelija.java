@@ -15,27 +15,30 @@ import lpkjasenrekisteri.LPKJasenrekisteri;
 
 public class Kuuntelija implements ActionListener {
     private LPKJasenrekisteri rekisteri;
-    private JTextArea tekstikentta;
-    private JButton lisaaJasen;
     private JButton naytaJasenet;
-    private Container pelikentta;
+    private JButton lisaaJasen;
+    private JButton poistaJasen;
     private CardLayout layout;
-    private JButton flippaus;
-    private JPanel kakku;
+    private JButton nappi;
+    private JPanel ikkuna;
     
-    public Kuuntelija(LPKJasenrekisteri rekisteri, Container pelikentta, JTextArea tekstikentta, JButton lisaaJasen, JButton naytaJasenet) {
+    public Kuuntelija(LPKJasenrekisteri rekisteri, JButton lisaaJasen, JButton naytaJasenet) {
         this.rekisteri = rekisteri;
-        this.pelikentta = pelikentta;
-        this.tekstikentta = tekstikentta;
         this.lisaaJasen = lisaaJasen;
         this.naytaJasenet = naytaJasenet;
         
     }
-
-    public Kuuntelija(JPanel kakku, CardLayout layout, JButton flippaus) {
-        this.kakku = kakku;
+    public Kuuntelija(JPanel ikkuna, CardLayout layout, JButton siirryPaaIkkunaan){
+        this.ikkuna = ikkuna;
         this.layout = layout;
-        this.flippaus = flippaus;
+        this.nappi = siirryPaaIkkunaan;
+    }
+    public Kuuntelija(JPanel ikkuna, CardLayout layout, JButton naytaJasenet, JButton lisaaJasen, JButton poistaJasen) {
+        this.ikkuna = ikkuna;
+        this.layout = layout;
+        this.naytaJasenet = naytaJasenet;
+        this.lisaaJasen = lisaaJasen;
+        this.poistaJasen = poistaJasen;
     }
     
     
@@ -43,13 +46,13 @@ public class Kuuntelija implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(naytaJasenet)){
-            tekstikentta.setText(rekisteri.getJasenet());     
+            layout.show(ikkuna,"NAYTAJASENET");
         }
         if(e.getSource().equals(lisaaJasen)){
-            JButton nappi = new JButton("joou");
+            layout.show(ikkuna,"LISAAJASEN");
         }
-        if(e.getSource().equals(flippaus)){
-            layout.next(kakku);
+        if(e.getSource().equals(nappi)){
+            layout.next(ikkuna);
         }
         
         

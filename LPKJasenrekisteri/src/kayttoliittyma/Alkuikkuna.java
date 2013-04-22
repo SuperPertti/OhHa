@@ -34,7 +34,7 @@ public class Alkuikkuna implements Runnable {
         JLabel moro = new JLabel ("Lippukunnan Jäsenrekisteri"
                 + "\n momomo");
         JButton ok = new JButton ("OK");
-        ok.addActionListener(new ToinenKuuntelija(frame));
+//        ok.addActionListener(new ToinenKuuntelija(frame));
         
         layout.putConstraint(SpringLayout.WEST, moro, 5, SpringLayout.WEST, container);
         layout.putConstraint(SpringLayout.NORTH, moro, 5, SpringLayout.NORTH, container);

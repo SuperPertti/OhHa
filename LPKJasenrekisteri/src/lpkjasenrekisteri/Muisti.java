@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 
 class Muisti {
+    private String polku;
     private File tiedosto;
     private PrintWriter kirjoittaja;
 

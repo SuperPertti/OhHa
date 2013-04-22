@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.WindowConstants;
 import lpkjasenrekisteri.LPKJasenrekisteri;
@@ -46,25 +47,16 @@ public class Kayttoliittyma implements Runnable {
  * @param container 
  */
     private void luoKomponentit(Container container) {
-         JPanel kakku = (JPanel) container;
-         
-        CardLayout mainLayout = new CardLayout();
-        kakku.setLayout(mainLayout);
-        
-//        JPanel kortti1 = new JPanel();
-//        JPanel kortti2 = new JPanel();
-//        kortti1.add(new JLabel ("eka"));
-//        kortti2.add(new JLabel ("toka"));
-//        container.add(kortti1, "EKA");
-//        container.add(kortti2, "TOKA");
-//        kortitLayout.last(container);
+         JPanel kakku = (JPanel) container; 
+         CardLayout mainLayout = new CardLayout();
+         kakku.setLayout(mainLayout);
             
             JPanel alkuIkkuna = luoAlkuIkkuna(kakku, mainLayout);
             JPanel paaIkkuna = luoPaaIkkuna();
             
-            kakku.add(alkuIkkuna, "EKA");
-            kakku.add(paaIkkuna, "TOKA");
-            mainLayout.show(kakku, "EKA");
+            kakku.add(alkuIkkuna, "ALKUIKKUNA");
+            kakku.add(paaIkkuna, "PAAIKKUNA");
+            mainLayout.show(kakku, "ALKUIKKUNA");
     }
 
     public JFrame getFrame() {
@@ -76,40 +68,64 @@ public class Kayttoliittyma implements Runnable {
         BoxLayout alkuIkkunaLayout = new BoxLayout(alkuIkkuna, BoxLayout.Y_AXIS);
         alkuIkkuna.setLayout(alkuIkkunaLayout);
         
-        JButton flippaus = new JButton("Flippaus");
-        Kuuntelija alkuKuuntelija = new Kuuntelija(kakku, mainLayout, flippaus);
-        flippaus.addActionListener(alkuKuuntelija);
-        alkuIkkuna.add(flippaus);
+        JTextArea kentta = new JTextArea("Lippukunnan jäsenrekisteriohjelma."
+                + "\n"
+                + "\nTähän ikkunaan tulee rekisteritietojen tallennus- sekä lukupolun asetus"
+                + "\nja muut esitiedot");
+        kentta.setEditable(false);
+        
+        JButton siirryPaaIkkunaan = new JButton("OK");
+        Kuuntelija alkuKuuntelija = new Kuuntelija(kakku, mainLayout, siirryPaaIkkunaan);
+        siirryPaaIkkunaan.addActionListener(alkuKuuntelija);
+        alkuIkkuna.add(kentta);
+        alkuIkkuna.add(siirryPaaIkkunaan);
         return alkuIkkuna;
     }
 
     public JPanel luoPaaIkkuna() {
+        SpringLayout paaIkkunaLayout = new SpringLayout();
         JPanel paaIkkuna = new JPanel();
-        paaIkkuna.add(new JLabel("mooi"));
-//        SpringLayout paaIkkunaLayout = new SpringLayout();
-//        paaIkkuna.setLayout(paaIkkunaLayout);
-//        
-//        CardLayout oikeaPaneliLayout = new CardLayout();
-//        Container oikeaPaneli = new Container();
-//        oikeaPaneli.setLayout(oikeaPaneliLayout);
-//   
-//        JButton naytaJasenet = new JButton ("Näytä jäsenet");
-//        JButton lisaaJasen = new JButton("Lisää jäsen");
-//        
-//        JTextArea tekstikentta = new JTextArea ();
-//        tekstikentta.setPreferredSize(new Dimension(200,25));
-//        
-//        Kuuntelija kuuntelija = new Kuuntelija(rekisteri, oikeaPaneli, tekstikentta, lisaaJasen, naytaJasenet); //Kaikki napit ja nupit samaan kuuntelijaan
-//        lisaaJasen.addActionListener(kuuntelija);
-//        naytaJasenet.addActionListener(kuuntelija);
-//        
-//        paaIkkunaLayout.putConstraint(SpringLayout.NORTH, naytaJasenet, 5, SpringLayout.NORTH, paaIkkuna);
-//        paaIkkunaLayout.putConstraint(SpringLayout.WEST, naytaJasenet, 5, SpringLayout.WEST, paaIkkuna);
-//        paaIkkunaLayout.putConstraint(SpringLayout.NORTH, lisaaJasen, 5, SpringLayout.NORTH, naytaJasenet);
-//        paaIkkunaLayout.putConstraint(SpringLayout.WEST, lisaaJasen, 5, SpringLayout.WEST, paaIkkuna);
-//        paaIkkunaLayout.putConstraint(SpringLayout.NORTH, oikeaPaneli, 5, SpringLayout.NORTH, paaIkkuna);
-//        paaIkkunaLayout.putConstraint(SpringLayout.WEST, oikeaPaneli, 25, SpringLayout.EAST, naytaJasenet);
+        paaIkkuna.setLayout(paaIkkunaLayout);
         
+//VASEN PANEELI:::        
+        GridLayout vasenPaneliLayout = new GridLayout(10,1);
+        JPanel vasenPaneli = new JPanel();
+        vasenPaneli.setLayout(vasenPaneliLayout);
+        
+        JButton naytaJasenetNappi = new JButton("Näytä jäsenet");
+        JButton lisaaJasenNappi = new JButton("Lisää jäsen");
+        JButton poistaJasenNappi = new JButton ("Poista Jäsen");
+
+        
+        vasenPaneli.add(naytaJasenetNappi);
+        vasenPaneli.add(lisaaJasenNappi);
+        vasenPaneli.add(poistaJasenNappi);
+        
+//OIKEA PANEELI:::       
+        CardLayout oikeaPaneliLayout = new CardLayout();
+        JPanel oikeaPaneli = new JPanel();
+        oikeaPaneli.setLayout(oikeaPaneliLayout);
+        
+        JPanel naytaJasenetPanel = new JPanel();
+        JPanel lisaaJasenPanel = new JPanel();
+        lisaaJasenPanel.add(new JLabel("LISÄÄ JÄSEN"));
+        naytaJasenetPanel.add(new JLabel("NAYTA JÄSEN"));
+        
+        oikeaPaneli.add(naytaJasenetPanel, "NAYTAJASENET");
+        oikeaPaneli.add(lisaaJasenPanel, "LISAAJASEN");
+        
+//VASEMMAN PANELIN NAPPIEN KUUNTELIJAT:::
+        Kuuntelija vasenPaneliKuuntelija = new Kuuntelija (oikeaPaneli, oikeaPaneliLayout, naytaJasenetNappi, lisaaJasenNappi, poistaJasenNappi );
+        naytaJasenetNappi.addActionListener(vasenPaneliKuuntelija);
+        lisaaJasenNappi.addActionListener(vasenPaneliKuuntelija);
+        
+//PÄÄIKKUNAN ELEMENTTIEN ASETTELU
+        paaIkkunaLayout.putConstraint(SpringLayout.NORTH, vasenPaneli, 10, SpringLayout.NORTH, paaIkkuna);
+        paaIkkunaLayout.putConstraint(SpringLayout.WEST, vasenPaneli, 10, SpringLayout.WEST, paaIkkuna);
+        paaIkkunaLayout.putConstraint(SpringLayout.NORTH, oikeaPaneli, 10, SpringLayout.NORTH, paaIkkuna);
+        paaIkkunaLayout.putConstraint(SpringLayout.WEST, oikeaPaneli, 10, SpringLayout.EAST, vasenPaneli);
+        paaIkkuna.add(vasenPaneli);
+        paaIkkuna.add(oikeaPaneli);
         return paaIkkuna;
     }
     
