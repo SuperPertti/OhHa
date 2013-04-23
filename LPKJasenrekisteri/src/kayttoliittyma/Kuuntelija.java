@@ -54,6 +54,9 @@ public class Kuuntelija implements ActionListener {
         if(e.getSource().equals(nappi)){
             layout.next(ikkuna);
         }
+        if(e.getSource().equals(poistaJasen)){
+            layout.show(ikkuna,"POISTAJASEN");
+        }
         
         
         

@@ -108,16 +108,20 @@ public class Kayttoliittyma implements Runnable {
         
         JPanel naytaJasenetPanel = new JPanel();
         JPanel lisaaJasenPanel = new JPanel();
+        JPanel poistaJasenPanel = new JPanel();
         lisaaJasenPanel.add(new JLabel("LISÄÄ JÄSEN"));
         naytaJasenetPanel.add(new JLabel("NAYTA JÄSEN"));
+        poistaJasenPanel.add(new JLabel("POISTA JASEN"));
         
         oikeaPaneli.add(naytaJasenetPanel, "NAYTAJASENET");
         oikeaPaneli.add(lisaaJasenPanel, "LISAAJASEN");
+        oikeaPaneli.add(poistaJasenPanel, "POISTAJASEN");
         
 //VASEMMAN PANELIN NAPPIEN KUUNTELIJAT:::
         Kuuntelija vasenPaneliKuuntelija = new Kuuntelija (oikeaPaneli, oikeaPaneliLayout, naytaJasenetNappi, lisaaJasenNappi, poistaJasenNappi );
         naytaJasenetNappi.addActionListener(vasenPaneliKuuntelija);
         lisaaJasenNappi.addActionListener(vasenPaneliKuuntelija);
+        poistaJasenNappi.addActionListener(vasenPaneliKuuntelija);
         
 //PÄÄIKKUNAN ELEMENTTIEN ASETTELU
         paaIkkunaLayout.putConstraint(SpringLayout.NORTH, vasenPaneli, 10, SpringLayout.NORTH, paaIkkuna);
