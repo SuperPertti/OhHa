@@ -18,6 +18,14 @@ public class Syntymaaika {
         this.omistaja = nimi;
         tarkastaSyntymaaika();
     }
+    
+    public Syntymaaika(String [] syntymaaika, String nimi) {
+        this.vuosi = Integer.parseInt(syntymaaika [0]);
+        this.kuukausi = Integer.parseInt(syntymaaika [1]);
+        this.paiva = Integer.parseInt(syntymaaika [2]);
+        this.omistaja = nimi;
+        tarkastaSyntymaaika();
+    }
 
     public int getVuosi() {
         return vuosi;
@@ -75,4 +83,11 @@ public class Syntymaaika {
         }
         return aikaOikein;
     }
+
+    @Override
+    public String toString() {
+        return getPaiva()+"."+getKuukausi()+"."+getVuosi();
+    }
+    
+    
 }

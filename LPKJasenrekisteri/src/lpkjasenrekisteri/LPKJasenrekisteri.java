@@ -25,46 +25,38 @@ public class LPKJasenrekisteri {
     }
 
     public void kaynnista() {
-        tervehdys();
         henkilot = muisti.lue();
-        String komento = "";
-        
-        while(!komento.equals("lopeta")){
-            System.out.print("Komennot:"
-                    + "\n\tlisaa - lisää henkilö rekisteriin"
-                    + "\n\tpoista - poistaa henkilön rekisteristä"
-                    + "\n\tjasenet - näyttää listatut jäsenet"
-                    + "\n\ttallenna - tallentaa muutokset pysyvästi"
-                    + "\n\tlopeta - sulkee ohjelman"
-                    + "\n"
-                    + "\nAnna komento:");
-            komento = lukija.nextLine();
-            System.out.print("\n");
-            
-            switch(komento){
-                case "lisaa":
-                   lisaa();
-                    
-                case "posta":
-                    poista();
-                    
-                case "jasenet":
-                    getJasenet();
-                    
-                case "tallenna":
-                    tallenna();
-            }
-            System.out.println("-----");
-        }
-        
-        loppusanat();
-    }
-    
-    public void tervehdys() {
-        System.out.print("Teretulemast käyttämään AWESOME LPKJäsenrekisteri -ohjelmaa!"
-                + "\nLet's see..."
-                + "\n----------"
-                + "\n");
+//        String komento = "";
+//        
+//        while(!komento.equals("lopeta")){
+//            System.out.print("Komennot:"
+//                    + "\n\tlisaa - lisää henkilö rekisteriin"
+//                    + "\n\tpoista - poistaa henkilön rekisteristä"
+//                    + "\n\tjasenet - näyttää listatut jäsenet"
+//                    + "\n\ttallenna - tallentaa muutokset pysyvästi"
+//                    + "\n\tlopeta - sulkee ohjelman"
+//                    + "\n"
+//                    + "\nAnna komento:");
+//            komento = lukija.nextLine();
+//            System.out.print("\n");
+//            
+//            switch(komento){
+//                case "lisaa":
+//                   lisaa();
+//                    
+//                case "posta":
+//                    poista();
+//                    
+//                case "jasenet":
+//                    getJasenet();
+//                    
+//                case "tallenna":
+//                    tallenna();
+//            }
+//            System.out.println("-----");
+//        }
+//        
+//        loppusanat();
     }
     
 /**
@@ -181,5 +173,17 @@ public class LPKJasenrekisteri {
         System.out.println("Tallennetaampa enne lopetusta...");
         tallenna();
         System.out.println("\nKiva kun lopetit, ei siuu ois enää kestänykkää");;
+    }
+    
+    public String getPolku (){
+        return muisti.getPolku();
+    }
+    
+    public String getDefaultPolku (){
+        return muisti.getDefaultPolku();
+    }
+
+    public ArrayList<Henkilo> getHenkilot() {
+        return henkilot;
     }
 }

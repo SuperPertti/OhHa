@@ -13,12 +13,15 @@ import java.util.Scanner;
 
 
 class Muisti {
+    private String defaultPolku;
     private String polku;
     private File tiedosto;
     private PrintWriter kirjoittaja;
 
     public Muisti(){
-        this.tiedosto = new File("./muisti/henkilot.txt");
+        this.defaultPolku = "./muisti/henkilot.txt";
+        this.polku = defaultPolku;
+        this.tiedosto = new File(polku);
     }
     
     /**
@@ -32,7 +35,6 @@ class Muisti {
         try {
             lukija = new Scanner(tiedosto);
         } catch (FileNotFoundException ex) {
-            System.out.println("ei aikaisempaa tallennusta. Luodaan uusi tiedosto");
             luoTiedosto();
             return henkilot;
         }
@@ -88,4 +90,20 @@ class Muisti {
         }
         
     }
+    
+    public boolean tiedostoOlemassa (){
+        if(tiedosto.exists()){
+            return true;
+        }
+        return false;
+    }
+    
+    public String getPolku(){
+        return polku;
+    }
+
+    public String getDefaultPolku() {
+        return defaultPolku;
+    }
+    
 }
