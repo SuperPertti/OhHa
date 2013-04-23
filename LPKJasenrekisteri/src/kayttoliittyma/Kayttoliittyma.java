@@ -119,7 +119,7 @@ public class Kayttoliittyma implements Runnable {
         JPanel paaIkkuna = new JPanel();
         paaIkkuna.setLayout(paaIkkunaLayout);
         
-//VASEN PANEELI:::        
+//VASEN PANEELI:::  
         GridLayout vasenPaneliLayout = new GridLayout(10,1);
         JPanel vasenPaneli = new JPanel();
         vasenPaneli.setLayout(vasenPaneliLayout);
@@ -127,11 +127,13 @@ public class Kayttoliittyma implements Runnable {
         JButton naytaJasenetNappi = new JButton("Näytä jäsenet");
         JButton lisaaJasenNappi = new JButton("Lisää jäsen");
         JButton poistaJasenNappi = new JButton ("Poista Jäsen");
+        JButton tallenna = new JButton ("Tallenna");
 
         
         vasenPaneli.add(naytaJasenetNappi);
         vasenPaneli.add(lisaaJasenNappi);
         vasenPaneli.add(poistaJasenNappi);
+        vasenPaneli.add(tallenna);
         
 //OIKEA PANEELI:::       
         CardLayout oikeaPaneliLayout = new CardLayout();
@@ -147,10 +149,11 @@ public class Kayttoliittyma implements Runnable {
         oikeaPaneli.add(poistaJasenPanel, "POISTAJASEN");
         
 //VASEMMAN PANELIN NAPPIEN KUUNTELIJAT:::
-        Kuuntelija vasenPaneliKuuntelija = new Kuuntelija (oikeaPaneli, oikeaPaneliLayout, naytaJasenetNappi, lisaaJasenNappi, poistaJasenNappi );
+        Kuuntelija vasenPaneliKuuntelija = new Kuuntelija (this, frame, oikeaPaneli, oikeaPaneliLayout, naytaJasenetNappi, naytaJasenetPanel, lisaaJasenNappi, poistaJasenNappi );
         naytaJasenetNappi.addActionListener(vasenPaneliKuuntelija);
         lisaaJasenNappi.addActionListener(vasenPaneliKuuntelija);
         poistaJasenNappi.addActionListener(vasenPaneliKuuntelija);
+        tallenna.addActionListener(new Kuuntelija(rekisteri, tallenna));
         
 //PÄÄIKKUNAN ELEMENTTIEN ASETTELU
         paaIkkunaLayout.putConstraint(SpringLayout.NORTH, vasenPaneli, 10, SpringLayout.NORTH, paaIkkuna);
@@ -162,7 +165,7 @@ public class Kayttoliittyma implements Runnable {
         return paaIkkuna;
     }
 
-    private JPanel luoNaytaJasenetPanel() {
+    public JPanel luoNaytaJasenetPanel() {
         JPanel naytaJasenetPanel = new JPanel();
         ArrayList<Henkilo> henkilot = rekisteri.getHenkilot();
 //OTSIKKORIVI:::
@@ -201,7 +204,7 @@ public class Kayttoliittyma implements Runnable {
         ryhmaKentta.setPreferredSize(new Dimension(100,25));
         
         JButton lisaaJasenNappi = new JButton("Lisää jäsen");
-        Kuuntelija lisaaJasenKuuntelija = new Kuuntelija(rekisteri, nimiKentta, syntymaaikaKentta, ryhmaKentta, lisaaJasenNappi);
+        Kuuntelija lisaaJasenKuuntelija = new Kuuntelija(frame, rekisteri, nimiKentta, syntymaaikaKentta, ryhmaKentta, lisaaJasenNappi);
         lisaaJasenNappi.addActionListener(lisaaJasenKuuntelija);
         
         lisaaJasenLayout.putConstraint(SpringLayout.WEST, nimi, 10, SpringLayout.WEST, lisaaJasenPanel);
@@ -236,5 +239,4 @@ public class Kayttoliittyma implements Runnable {
         JPanel poistaJasenPanel = new JPanel();
         return poistaJasenPanel;
     }
-    
 }

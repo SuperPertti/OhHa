@@ -63,27 +63,33 @@ public class LPKJasenrekisteri {
  * kysyy lisättävän henkilön tiedot 
  * ja lisää henkilön ArrayList henkilot:n
  */
-    public void lisaa() {
-        System.out.print("Anna henkilön nimi: ");
-        String nimi = lukija.nextLine();
-        
-        System.out.print("Anna henkilön syntymapaiva (*paiva*:*kuukausi*:*vuosi*): ");
-        String [] syntymaaika = lukija.nextLine().split(":");
-        
-        System.out.print("Aseta henkilö ryhmään: ");
-        String ryhma = lukija.nextLine();
-        System.out.print("\n");
-        
-        try{
-            henkilot.add(new Henkilo(nimi,Integer.parseInt(syntymaaika[2]),Integer.parseInt(syntymaaika[1]),Integer.parseInt(syntymaaika[0]), ryhma));
-        muutokset.add("Henkilö "+nimi+" lisätty.");
-        System.out.print("Henkilö "+nimi+" lisätty."
-                + "\nMuutokset eivät ole pysyviä ohjelman sulkemisen jälkeen ilman tallennusta."
-                + "\n");
-        } catch(Exception e){
-            System.out.println("Henkilön lissäys meni pielleen, ou noou: "+e.getMessage());
-        }
-    }
+    
+      public void lisaa (Henkilo henkilo){
+          henkilot.add(henkilo);
+      }
+      
+//    public void lisaa() {
+//        System.out.print("Anna henkilön nimi: ");
+//        String nimi = lukija.nextLine();
+//        
+//        System.out.print("Anna henkilön syntymapaiva (*paiva*:*kuukausi*:*vuosi*): ");
+//        String [] syntymaaika = lukija.nextLine().split(":");
+//        
+//        System.out.print("Aseta henkilö ryhmään: ");
+//        String ryhma = lukija.nextLine();
+//        System.out.print("\n");
+//        
+//        try{
+//            henkilot.add(new Henkilo(nimi,Integer.parseInt(syntymaaika[2]),Integer.parseInt(syntymaaika[1]),Integer.parseInt(syntymaaika[0]), ryhma));
+//        muutokset.add("Henkilö "+nimi+" lisätty.");
+//        System.out.print("Henkilö "+nimi+" lisätty."
+//                + "\nMuutokset eivät ole pysyviä ohjelman sulkemisen jälkeen ilman tallennusta."
+//                + "\n");
+//        } catch(Exception e){
+//            System.out.println("Henkilön lissäys meni pielleen, ou noou: "+e.getMessage());
+//        }
+//    }
+      
 /**
  *kysyy henkilönn nimen
  * ja poistaa henkilön ArrayList henkilot:sta
@@ -142,29 +148,35 @@ public class LPKJasenrekisteri {
  * jos Y, syöttää ArrayList henkilot:n Muistille muisti.
  */
     public void tallenna() {
-        String komento = "";
-        System.out.print("Olet tallentamassa tekemiäsi muutoksia:\n");
-        
-        if(muutokset.isEmpty()){
-            System.out.println("Ei muutoksia.");
-            return;
-        }
-        
-        for (String muutos : muutokset) {
-            System.out.println("\t"+muutos);
-        }
-        while (!komento.equals("Y") && !komento.equals("N")){
-        System.out.print("\nOletko varma että haluat tallentaa muutokset? Y/N :");
-        komento = lukija.nextLine();
-        }
-        if(komento.equals("Y")){
-            muutokset.clear();
-            try {
+         try {
                 muisti.tallenna(henkilot);
             } catch (IOException ex) {
                 Logger.getLogger(LPKJasenrekisteri.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        
+//        String komento = "";
+//        System.out.print("Olet tallentamassa tekemiäsi muutoksia:\n");
+//        
+//        if(muutokset.isEmpty()){
+//            System.out.println("Ei muutoksia.");
+//            return;
+//        }
+//        
+//        for (String muutos : muutokset) {
+//            System.out.println("\t"+muutos);
+//        }
+//        while (!komento.equals("Y") && !komento.equals("N")){
+//        System.out.print("\nOletko varma että haluat tallentaa muutokset? Y/N :");
+//        komento = lukija.nextLine();
+//        }
+//        if(komento.equals("Y")){
+//            muutokset.clear();
+//            try {
+//                muisti.tallenna(henkilot);
+//            } catch (IOException ex) {
+//                Logger.getLogger(LPKJasenrekisteri.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
     }
     /**
      * Hyvästelee käyttäjän sanoin
@@ -186,4 +198,5 @@ public class LPKJasenrekisteri {
     public ArrayList<Henkilo> getHenkilot() {
         return henkilot;
     }
+    
 }

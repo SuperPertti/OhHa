@@ -8,16 +8,20 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import lpkjasenrekisteri.Henkilo;
 import lpkjasenrekisteri.LPKJasenrekisteri;
 import lpkjasenrekisteri.Syntymaaika;
 
 
 public class Kuuntelija implements ActionListener {
     private LPKJasenrekisteri rekisteri;
+    private JFrame kayttis;
+    private JFrame frame;
     private JButton siirryNaytaJasenet;
     private JButton siirryLisaaJasen;
     private JButton siirryPoistaJasen;
@@ -28,6 +32,10 @@ public class Kuuntelija implements ActionListener {
     private JTextField syntymaaikaKentta;
     private JTextField ryhmaKentta;
     private JButton lisaaJasen;
+    private JButton sulje;
+    private JButton tallenna;
+    private JPanel naytaJasenetPanel;
+    private Kayttoliittyma main;
     
     public Kuuntelija(LPKJasenrekisteri rekisteri, JButton lisaaJasen, JButton naytaJasenet) {
         this.rekisteri = rekisteri;
@@ -35,25 +43,40 @@ public class Kuuntelija implements ActionListener {
         this.siirryNaytaJasenet = naytaJasenet;
         
     }
-    public Kuuntelija(JPanel ikkuna, CardLayout layout, JButton siirryPaaIkkunaan){
+    public Kuuntelija(JPanel ikkuna, CardLayout layout, JButton siirryPaaIkkunaan){ //alkuIkkunan "OK"-napin kuuntelija, tarkoitus vaihtaa pää Panelin, kakun Layoutin seuraava kortti -> paaIkkuna
         this.ikkuna = ikkuna;
         this.layout = layout;
         this.siirryPaaIkkunaan = siirryPaaIkkunaan;
     }
-    public Kuuntelija(JPanel ikkuna, CardLayout layout, JButton naytaJasenet, JButton lisaaJasen, JButton poistaJasen) {
+    public Kuuntelija(Kayttoliittyma main, JFrame kayttis, JPanel ikkuna, CardLayout layout, JButton naytaJasenet, JPanel naytaJasenetPanel, JButton lisaaJasen, JButton poistaJasen) { //VasemmanPanelin nappien kuuntelija
+        this.main = main;
+        this.kayttis = kayttis;
         this.ikkuna = ikkuna;
         this.layout = layout;
         this.siirryNaytaJasenet = naytaJasenet;
         this.siirryLisaaJasen = lisaaJasen;
         this.siirryPoistaJasen = poistaJasen;
+        this.naytaJasenetPanel = naytaJasenetPanel;
     }
     
-    public Kuuntelija(LPKJasenrekisteri rekisteri, JTextField nimiKentta,JTextField syntymaaikaKentta,JTextField ryhmaKentta, JButton lisaaJasen){
+    public Kuuntelija(JFrame kayttis, LPKJasenrekisteri rekisteri, JTextField nimiKentta, JTextField syntymaaikaKentta,JTextField ryhmaKentta, JButton lisaaJasen){
         this.rekisteri = rekisteri;
+        this.kayttis = kayttis;
         this.nimiKentta = nimiKentta;
         this.syntymaaikaKentta = syntymaaikaKentta;
         this.ryhmaKentta = ryhmaKentta;
         this.lisaaJasen = lisaaJasen;
+    }
+    
+    public Kuuntelija (JFrame frame, JFrame kayttis, JButton sulje){
+        this.frame = frame;
+        this.kayttis = kayttis;
+        this.sulje = sulje;
+    }
+    
+    public Kuuntelija (LPKJasenrekisteri rekisteri, JButton tallenna){
+        this.rekisteri = rekisteri;
+        this.tallenna = tallenna;
     }
     
     
@@ -64,6 +87,7 @@ public class Kuuntelija implements ActionListener {
             layout.next(ikkuna);
         }
         if(e.getSource().equals(siirryNaytaJasenet)){
+            naytaJasenetPanel = main.luoNaytaJasenetPanel();
             layout.show(ikkuna,"NAYTAJASENET");
         }
         if(e.getSource().equals(siirryLisaaJasen)){
@@ -75,7 +99,8 @@ public class Kuuntelija implements ActionListener {
         }
         if(e.getSource().equals(lisaaJasen)){
             String nimi = nimiKentta.getText();
-            
+            String ryhma = ryhmaKentta.getText();
+            Syntymaaika syntymaaika;
             try{
                 String [] ika = syntymaaikaKentta.getText().split(":");
                 
@@ -83,13 +108,25 @@ public class Kuuntelija implements ActionListener {
                 int kuukausi = Integer.parseInt(ika[1]);
                 int paiva = Integer.parseInt(ika[0]);
                 
-                Syntymaaika lisattavaSyntymaaika = new Syntymaaika (vuosi,kuukausi,paiva,nimi);
+                syntymaaika = new Syntymaaika (vuosi,kuukausi,paiva,nimi);
             }
             catch (Exception ex){
-                SwingUtilities.invokeLater(new VirheIkkuna("Paskat olet syntynyt "+ syntymaaikaKentta.getText()
+//                frame.setEnabled(false);
+                SwingUtilities.invokeLater(new VirheIkkuna(frame, "Paskat olet syntynyt "+ syntymaaikaKentta.getText()
                         + "\nyritäppä uudestaan"));
+                return;
             }
-            
+            rekisteri.lisaa(new Henkilo(nimi, syntymaaika, ryhma));
+            nimiKentta.setText("");
+            ryhmaKentta.setText("");
+            syntymaaikaKentta.setText("");        
+        }
+        if(e.getSource().equals(sulje)){
+//            kayttis.setEnabled(true);
+            frame.dispose();
+        }
+        if(e.getSource().equals(tallenna)){
+            rekisteri.tallenna();
         }
     }
     

@@ -7,10 +7,14 @@ package kayttoliittyma;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -18,10 +22,12 @@ import javax.swing.JTextArea;
  */
 public class VirheIkkuna implements Runnable {
     private JFrame frame;
+    private JFrame kayttis;
     private String virheTeksti;
 
-    public VirheIkkuna(String virheTeksti) {
+    public VirheIkkuna(JFrame kayttis, String virheTeksti) {
         this.virheTeksti=virheTeksti;
+        this.kayttis = kayttis;
     }
     
     
@@ -29,6 +35,8 @@ public class VirheIkkuna implements Runnable {
     public void run() {
         frame = new JFrame("Virhe");
         frame.setPreferredSize(new Dimension(600, 200));
+        
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         
         luoKomponentit(frame.getContentPane());
 
@@ -40,11 +48,17 @@ public class VirheIkkuna implements Runnable {
          JPanel ikkuna = (JPanel) container;
          ikkuna.setLayout(new BorderLayout());
          ikkuna.add(new JTextArea(virheTeksti),BorderLayout.CENTER);
-         
+         JButton sulje = new JButton ("No okei, lupaan yrittää kovempaa");
+         sulje.addActionListener(new Kuuntelija (frame, kayttis, sulje));
+         ikkuna.add(sulje, BorderLayout.SOUTH);
     }
 
     public JFrame getFrame() {
         return frame;
     }
+    
+    public void suljeIkkuna() {
+                frame.dispose();
+        }
     
 }

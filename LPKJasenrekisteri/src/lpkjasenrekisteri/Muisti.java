@@ -73,8 +73,8 @@ class Muisti {
     void tallenna(ArrayList<Henkilo> henkilot) throws IOException {
         kirjoittaja = new PrintWriter(tiedosto);
         for (Henkilo henkilo : henkilot) {
-            kirjoittaja.write(henkilo.getNimi()+";"+henkilo.getSyntymaaika().getPaiva()+":"+henkilo.getSyntymaaika().getKuukausi()+":"+henkilo.getSyntymaaika().getVuosi()+";"+henkilo.getRyhma()+""
-                    + "\n");
+            kirjoittaja.write(henkilo.getNimi()+";"+henkilo.getSyntymaaika().getPaiva()+":"+henkilo.getSyntymaaika().getKuukausi()+":"+henkilo.getSyntymaaika().getVuosi()+";"+henkilo.getRyhma()
+                    +"\r\n");
         }
         kirjoittaja.close();
     }

@@ -15,6 +15,12 @@ public class Henkilo {
         this.syntymaaika = new Syntymaaika(vuosi, kuukausi, paiva, nimi);
         this.ryhma = ryhma;
     }
+    
+    public Henkilo (String nimi, Syntymaaika syntymaaika, String ryhma){
+        this.nimi = nimi;
+        this.syntymaaika = syntymaaika;
+        this.ryhma = ryhma;
+    }
 
     public void setNimi(String nimi) {
         this.nimi = nimi;
