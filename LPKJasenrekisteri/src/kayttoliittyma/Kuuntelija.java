@@ -36,6 +36,7 @@ public class Kuuntelija implements ActionListener {
     private JButton tallenna;
     private JPanel naytaJasenetPanel;
     private Kayttoliittyma main;
+    private JPanel oikeaPaneli;
     
     public Kuuntelija(LPKJasenrekisteri rekisteri, JButton lisaaJasen, JButton naytaJasenet) {
         this.rekisteri = rekisteri;
@@ -59,7 +60,9 @@ public class Kuuntelija implements ActionListener {
         this.naytaJasenetPanel = naytaJasenetPanel;
     }
     
-    public Kuuntelija(JFrame kayttis, LPKJasenrekisteri rekisteri, JTextField nimiKentta, JTextField syntymaaikaKentta,JTextField ryhmaKentta, JButton lisaaJasen){
+    public Kuuntelija(Kayttoliittyma main, JPanel oikeaPaneli, JFrame kayttis, LPKJasenrekisteri rekisteri, JTextField nimiKentta, JTextField syntymaaikaKentta,JTextField ryhmaKentta, JButton lisaaJasen){ //Lisaa jasen nappi etc
+        this.main = main;
+        this.oikeaPaneli = oikeaPaneli;
         this.rekisteri = rekisteri;
         this.kayttis = kayttis;
         this.nimiKentta = nimiKentta;
@@ -87,7 +90,6 @@ public class Kuuntelija implements ActionListener {
             layout.next(ikkuna);
         }
         if(e.getSource().equals(siirryNaytaJasenet)){
-            naytaJasenetPanel = main.luoNaytaJasenetPanel();
             layout.show(ikkuna,"NAYTAJASENET");
         }
         if(e.getSource().equals(siirryLisaaJasen)){
@@ -100,6 +102,9 @@ public class Kuuntelija implements ActionListener {
         if(e.getSource().equals(lisaaJasen)){
             String nimi = nimiKentta.getText();
             String ryhma = ryhmaKentta.getText();
+            if(nimi.equals("")){
+                return;
+            }
             Syntymaaika syntymaaika;
             try{
                 String [] ika = syntymaaikaKentta.getText().split(":");
@@ -119,7 +124,8 @@ public class Kuuntelija implements ActionListener {
             rekisteri.lisaa(new Henkilo(nimi, syntymaaika, ryhma));
             nimiKentta.setText("");
             ryhmaKentta.setText("");
-            syntymaaikaKentta.setText("");        
+            syntymaaikaKentta.setText("");
+            oikeaPaneli.add(main.luoNaytaJasenetPanel(),"NAYTAJASENET");
         }
         if(e.getSource().equals(sulje)){
 //            kayttis.setEnabled(true);

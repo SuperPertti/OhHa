@@ -7,6 +7,7 @@ package kayttoliittyma;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import javax.swing.JButton;
@@ -47,7 +48,9 @@ public class VirheIkkuna implements Runnable {
     private void luoKomponentit(Container container) {
          JPanel ikkuna = (JPanel) container;
          ikkuna.setLayout(new BorderLayout());
-         ikkuna.add(new JTextArea(virheTeksti),BorderLayout.CENTER);
+         JTextArea virheTekstiKentta = new JTextArea(virheTeksti);
+         virheTekstiKentta.setFont(new Font("Sherif", Font.PLAIN,30) );
+         ikkuna.add(virheTekstiKentta,BorderLayout.CENTER);
          JButton sulje = new JButton ("No okei, lupaan yrittää kovempaa");
          sulje.addActionListener(new Kuuntelija (frame, kayttis, sulje));
          ikkuna.add(sulje, BorderLayout.SOUTH);

@@ -9,6 +9,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -40,7 +41,7 @@ public class Kayttoliittyma implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("LPKJäsenrekisteri");
-        frame.setPreferredSize(new Dimension(800, 400));
+        frame.setPreferredSize(new Dimension(800, 600));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +61,8 @@ public class Kayttoliittyma implements Runnable {
             
             JPanel alkuIkkuna = luoAlkuIkkuna(kakku, mainLayout);
             JPanel paaIkkuna = luoPaaIkkuna();
+            
+            
             
             kakku.add(alkuIkkuna, "ALKUIKKUNA");
             kakku.add(paaIkkuna, "PAAIKKUNA");
@@ -87,6 +90,7 @@ public class Kayttoliittyma implements Runnable {
                 + "\n"
                 + "\nLuet rekisteritietoja alla olevasta osoitteesta."
                 + "\nTiedostopolkua ei tämän hetkisessä ohjelmaversiossa voi vaihtaa.");
+        tekstiKentta.setFont(new Font("Sherif", Font.PLAIN,20) );
         tekstiKentta.setEditable(false);
         
         JButton vaihdaTiedostoPolkuNappi = new JButton ("Default");
@@ -135,13 +139,13 @@ public class Kayttoliittyma implements Runnable {
         vasenPaneli.add(poistaJasenNappi);
         vasenPaneli.add(tallenna);
         
-//OIKEA PANEELI:::       
+//OIKEA PANEELI:::   
         CardLayout oikeaPaneliLayout = new CardLayout();
         JPanel oikeaPaneli = new JPanel();
         oikeaPaneli.setLayout(oikeaPaneliLayout);
         
         JPanel naytaJasenetPanel = luoNaytaJasenetPanel();
-        JPanel lisaaJasenPanel = luoLisaaJasenPanel();
+        JPanel lisaaJasenPanel = luoLisaaJasenPanel(oikeaPaneli);
         JPanel poistaJasenPanel = poistaJasenPanel();
         
         oikeaPaneli.add(naytaJasenetPanel, "NAYTAJASENET");
@@ -160,6 +164,7 @@ public class Kayttoliittyma implements Runnable {
         paaIkkunaLayout.putConstraint(SpringLayout.WEST, vasenPaneli, 10, SpringLayout.WEST, paaIkkuna);
         paaIkkunaLayout.putConstraint(SpringLayout.NORTH, oikeaPaneli, 10, SpringLayout.NORTH, paaIkkuna);
         paaIkkunaLayout.putConstraint(SpringLayout.WEST, oikeaPaneli, 10, SpringLayout.EAST, vasenPaneli);
+        paaIkkunaLayout.putConstraint(SpringLayout.EAST, oikeaPaneli, 10, SpringLayout.EAST, paaIkkuna);
         paaIkkuna.add(vasenPaneli);
         paaIkkuna.add(oikeaPaneli);
         return paaIkkuna;
@@ -180,12 +185,13 @@ public class Kayttoliittyma implements Runnable {
         }
         JTable taulukko = new JTable(pahuudenTaulukko, otsikkorivi);
         JScrollPane liukutsydeemi = new JScrollPane(taulukko);
+        taulukko.setPreferredScrollableViewportSize(new Dimension(500,300));
         taulukko.setFillsViewportHeight(true);
         naytaJasenetPanel.add(liukutsydeemi);
         return naytaJasenetPanel;
     }
 
-    private JPanel luoLisaaJasenPanel() {  
+    private JPanel luoLisaaJasenPanel(JPanel oikeaPaneli) {  
         SpringLayout lisaaJasenLayout = new SpringLayout();
         JPanel lisaaJasenPanel = new JPanel(lisaaJasenLayout);
         
@@ -196,7 +202,7 @@ public class Kayttoliittyma implements Runnable {
         JTextField syntymaaikaKentta = new JTextField();
         JTextField ryhmaKentta = new JTextField();
         
-        JLabel syntymaajanMaarite = new JLabel ("Anna syntymäaika muotoa 'paiva:kuukausi:vuosi', esim '1:1:1990'");
+        JLabel syntymaaikaMaarite = new JLabel ("Anna syntymäaika muotoa 'paiva:kuukausi:vuosi', esim '1:1:1990'");
         
 //TEKSTIKENTTIEN KOKO:::        
         nimiKentta.setPreferredSize(new Dimension(100,25));
@@ -204,7 +210,7 @@ public class Kayttoliittyma implements Runnable {
         ryhmaKentta.setPreferredSize(new Dimension(100,25));
         
         JButton lisaaJasenNappi = new JButton("Lisää jäsen");
-        Kuuntelija lisaaJasenKuuntelija = new Kuuntelija(frame, rekisteri, nimiKentta, syntymaaikaKentta, ryhmaKentta, lisaaJasenNappi);
+        Kuuntelija lisaaJasenKuuntelija = new Kuuntelija(this, oikeaPaneli, frame, rekisteri, nimiKentta, syntymaaikaKentta, ryhmaKentta, lisaaJasenNappi);
         lisaaJasenNappi.addActionListener(lisaaJasenKuuntelija);
         
         lisaaJasenLayout.putConstraint(SpringLayout.WEST, nimi, 10, SpringLayout.WEST, lisaaJasenPanel);
@@ -216,6 +222,9 @@ public class Kayttoliittyma implements Runnable {
         lisaaJasenLayout.putConstraint(SpringLayout.NORTH, syntymaaika, 10, SpringLayout.SOUTH, nimi);
         lisaaJasenLayout.putConstraint(SpringLayout.WEST, syntymaaikaKentta, 150, SpringLayout.WEST, lisaaJasenPanel);
         lisaaJasenLayout.putConstraint(SpringLayout.NORTH, syntymaaikaKentta, 10, SpringLayout.SOUTH, nimi);
+        lisaaJasenLayout.putConstraint(SpringLayout.WEST, syntymaaikaMaarite, 10, SpringLayout.EAST, syntymaaikaKentta);
+        lisaaJasenLayout.putConstraint(SpringLayout.EAST, syntymaaikaMaarite, 10, SpringLayout.EAST, lisaaJasenPanel);
+        lisaaJasenLayout.putConstraint(SpringLayout.NORTH, syntymaaikaMaarite, 10, SpringLayout.SOUTH, nimi);
         
         lisaaJasenLayout.putConstraint(SpringLayout.WEST, ryhma, 10, SpringLayout.WEST, lisaaJasenPanel);
         lisaaJasenLayout.putConstraint(SpringLayout.NORTH, ryhma, 10, SpringLayout.SOUTH, syntymaaika);
@@ -229,6 +238,7 @@ public class Kayttoliittyma implements Runnable {
         lisaaJasenPanel.add(nimiKentta);
         lisaaJasenPanel.add(syntymaaika);
         lisaaJasenPanel.add(syntymaaikaKentta);
+        lisaaJasenPanel.add(syntymaaikaMaarite);
         lisaaJasenPanel.add(ryhma);
         lisaaJasenPanel.add(ryhmaKentta);
         lisaaJasenPanel.add(lisaaJasenNappi);
@@ -238,5 +248,9 @@ public class Kayttoliittyma implements Runnable {
     private JPanel poistaJasenPanel() {
         JPanel poistaJasenPanel = new JPanel();
         return poistaJasenPanel;
+    }
+
+    public void update() {
+        frame.revalidate();
     }
 }
