@@ -32,6 +32,10 @@ import lpkjasenrekisteri.LPKJasenrekisteri;
 public class Kayttoliittyma implements Runnable {
     private JFrame frame;
     private LPKJasenrekisteri rekisteri;
+    private JPanel alkuIkkuna;
+    private JPanel paaIkkuna;
+    private JPanel kakku;
+    private JPanel oikeaPaneli;
     
     public Kayttoliittyma(){
         rekisteri = new LPKJasenrekisteri();
@@ -55,12 +59,12 @@ public class Kayttoliittyma implements Runnable {
  * @param container
  */
     private void luoKomponentit(Container container) {
-         JPanel kakku = (JPanel) container; 
+         kakku = (JPanel) container; 
          CardLayout mainLayout = new CardLayout();
          kakku.setLayout(mainLayout);
             
-            JPanel alkuIkkuna = luoAlkuIkkuna(kakku, mainLayout);
-            JPanel paaIkkuna = luoPaaIkkuna();
+            this.alkuIkkuna = luoAlkuIkkuna(kakku, mainLayout);
+            this.paaIkkuna = luoPaaIkkuna();
             
             
             
@@ -79,7 +83,7 @@ public class Kayttoliittyma implements Runnable {
  * @return 
  */
     public JPanel luoAlkuIkkuna(JPanel kakku, CardLayout mainLayout) {
-        JPanel alkuIkkuna = new JPanel();
+        alkuIkkuna = new JPanel();
         SpringLayout alkuIkkunaLayout = new SpringLayout();
         alkuIkkuna.setLayout(alkuIkkunaLayout);
         
@@ -120,7 +124,7 @@ public class Kayttoliittyma implements Runnable {
 
     public JPanel luoPaaIkkuna() {
         SpringLayout paaIkkunaLayout = new SpringLayout();
-        JPanel paaIkkuna = new JPanel();
+        paaIkkuna = new JPanel();
         paaIkkuna.setLayout(paaIkkunaLayout);
         
 //VASEN PANEELI:::  
@@ -141,7 +145,7 @@ public class Kayttoliittyma implements Runnable {
         
 //OIKEA PANEELI:::   
         CardLayout oikeaPaneliLayout = new CardLayout();
-        JPanel oikeaPaneli = new JPanel();
+        oikeaPaneli = new JPanel();
         oikeaPaneli.setLayout(oikeaPaneliLayout);
         
         JPanel naytaJasenetPanel = luoNaytaJasenetPanel();
@@ -246,11 +250,17 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private JPanel poistaJasenPanel() {
-        JPanel poistaJasenPanel = new JPanel();
+        JPanel poistaJasenPanel = new JPanel(new GridLayout(3,1));
+        JLabel annaNimiLabel = new JLabel ("Poistettavan henkilön nimi: ");
+        JTextField annaNimiTekstikentta = new JTextField();
+        annaNimiTekstikentta.setSize(30, 25);
+        JButton poista = new JButton ("Poista");
+        Kuuntelija kuuntelija = new Kuuntelija (oikeaPaneli, kakku, this, rekisteri, paaIkkuna, annaNimiTekstikentta, poista);
+        poista.addActionListener(kuuntelija);
+        
+        poistaJasenPanel.add(annaNimiLabel);
+        poistaJasenPanel.add(annaNimiTekstikentta);
+        poistaJasenPanel.add(poista);
         return poistaJasenPanel;
-    }
-
-    public void update() {
-        frame.revalidate();
     }
 }

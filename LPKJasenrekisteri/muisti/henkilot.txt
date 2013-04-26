@@ -1,8 +1,2 @@
-Henri;1:1:1190;asd
-asd;1:1:1990;asd
-asd;1:1:1990;asd
 qwerty;1:1:1990;asdfdsgd
-pertti;1:6:1968;OhjA
-Pertti;1:1:2010;korpit
 paavo;1:1:1990;korpit
-Henri;1:1:1990;kakka

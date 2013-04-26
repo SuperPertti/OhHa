@@ -37,6 +37,10 @@ public class Kuuntelija implements ActionListener {
     private JPanel naytaJasenetPanel;
     private Kayttoliittyma main;
     private JPanel oikeaPaneli;
+    private JPanel paaIkkuna;
+    private JTextField annaNimiTekstikentta;
+    private JButton poista;
+    private JPanel kakku;
     
     public Kuuntelija(LPKJasenrekisteri rekisteri, JButton lisaaJasen, JButton naytaJasenet) {
         this.rekisteri = rekisteri;
@@ -58,6 +62,17 @@ public class Kuuntelija implements ActionListener {
         this.siirryLisaaJasen = lisaaJasen;
         this.siirryPoistaJasen = poistaJasen;
         this.naytaJasenetPanel = naytaJasenetPanel;
+    }
+    
+    public Kuuntelija (JPanel oikeaPaneli, JPanel kakku, Kayttoliittyma main, LPKJasenrekisteri rekisteri, JPanel paaIkkuna, JTextField annaNimiTekstikentta, JButton poista){ //POISTA IKKUNAN KUUNTELIJA
+        this.oikeaPaneli = oikeaPaneli;
+        this.kakku = kakku;
+        this.main = main;
+        this.rekisteri = rekisteri;
+        this.paaIkkuna = paaIkkuna;
+        this.annaNimiTekstikentta = annaNimiTekstikentta;
+        this.poista = poista;
+        
     }
     
     public Kuuntelija(Kayttoliittyma main, JPanel oikeaPaneli, JFrame kayttis, LPKJasenrekisteri rekisteri, JTextField nimiKentta, JTextField syntymaaikaKentta,JTextField ryhmaKentta, JButton lisaaJasen){ //Lisaa jasen nappi etc
@@ -133,6 +148,16 @@ public class Kuuntelija implements ActionListener {
         }
         if(e.getSource().equals(tallenna)){
             rekisteri.tallenna();
+        }
+        if(e.getSource().equals(poista)){
+            if(rekisteri.poista(annaNimiTekstikentta.getText())){
+                annaNimiTekstikentta.setText("");
+                paaIkkuna = main.luoPaaIkkuna();
+                oikeaPaneli.add(main.luoNaytaJasenetPanel(), "NAYTAJASENET");
+                return;
+            }
+            SwingUtilities.invokeLater(new VirheIkkuna(kayttis, "Henkilöä '"+annaNimiTekstikentta.getText()+"' ei ole listalla"
+                    + "\nSENKIN TORVI!"));
         }
     }
     

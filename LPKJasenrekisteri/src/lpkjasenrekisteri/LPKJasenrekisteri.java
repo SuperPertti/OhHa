@@ -94,43 +94,51 @@ public class LPKJasenrekisteri {
  *kysyy henkilönn nimen
  * ja poistaa henkilön ArrayList henkilot:sta
  */
-    public void poista() {
-        if(henkilot.isEmpty()){
-            System.out.println("Ei jäsenia listalla");
-            return;
-        }
-        String poistettava = "";
-        boolean listalla = false;
-        String poistetaanko = "";
-        String jatketaanko = "";
-        while(!listalla){
-            System.out.print("Anna poistettavan henkilön nimi: ");
-            poistettava = lukija.nextLine();
-            for (Henkilo henkilo : henkilot) {
-                if(henkilo.getNimi().equals(poistettava)){
-                    listalla = true;
-                    while (!poistetaanko.equals("Y") && !poistetaanko.equals("N")){
-                    System.out.print("Henkilö '"+poistettava+"' löytyi!"
-                            + "\nPoistetaanko varmasti? Y/N :");
-                    poistetaanko = lukija.nextLine();
-                    if (poistetaanko.equals("Y")){
-                        muutokset.add("Henkilö "+henkilo.getNimi()+" poistettu.");
-                        henkilot.remove(henkilo);
-                        return;
-                    }
-                    }
-                }
-            }
-            if(!listalla){
-                System.out.print("Antamaasi henkilöä ei ole listalla. Kirjoititko nimen oikein?"
-                        + "\nAnna uusi nimi? Y/N :");
-                jatketaanko = lukija.nextLine();
-                if(jatketaanko.equals("N")){
-                    return;
-                }
+    public boolean poista(String nimi) {
+        
+        for (Henkilo henkilo : henkilot) {
+            if(henkilo.getNimi().equals(nimi)){
+                henkilot.remove(henkilo);
+                return true;
             }
         }
         
+//        if(henkilot.isEmpty()){
+//            System.out.println("Ei jäsenia listalla");
+//            return;
+//        }
+//        String poistettava = "";
+//        boolean listalla = false;
+//        String poistetaanko = "";
+//        String jatketaanko = "";
+//        while(!listalla){
+//            System.out.print("Anna poistettavan henkilön nimi: ");
+//            poistettava = lukija.nextLine();
+//            for (Henkilo henkilo : henkilot) {
+//                if(henkilo.getNimi().equals(poistettava)){
+//                    listalla = true;
+//                    while (!poistetaanko.equals("Y") && !poistetaanko.equals("N")){
+//                    System.out.print("Henkilö '"+poistettava+"' löytyi!"
+//                            + "\nPoistetaanko varmasti? Y/N :");
+//                    poistetaanko = lukija.nextLine();
+//                    if (poistetaanko.equals("Y")){
+//                        muutokset.add("Henkilö "+henkilo.getNimi()+" poistettu.");
+//                        henkilot.remove(henkilo);
+//                        return;
+//                    }
+//                    }
+//                }
+//            }
+//            if(!listalla){
+//                System.out.print("Antamaasi henkilöä ei ole listalla. Kirjoititko nimen oikein?"
+//                        + "\nAnna uusi nimi? Y/N :");
+//                jatketaanko = lukija.nextLine();
+//                if(jatketaanko.equals("N")){
+//                    return;
+//                }
+//            }
+//        }
+        return false;
     }
 
     public String getJasenet() {
