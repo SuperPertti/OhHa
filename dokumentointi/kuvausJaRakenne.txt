@@ -1,9 +1,0 @@
-Aihe: yhteisön jäsenrekisteri (tässä tapauksessa partiolippukunta)
-järjestelmä, jonka avulla pidetään kirjaa lippukunnan jäsenistä sekä hallinnoidaan
-kunkin lippukuntalaisen sijoittumista ryhmään/tehtävään lippukunnassa.
-
-Käyttäjät: Admin
-on tarkoitus että vain jäsenrekisterin hoitaja sekä sihteeri pääsevät lukemaan sekä
-päivittämään tietoja, joten monenlaiselle käyttäjälle ei ole tarvetta.
-Järjestelmä vaatii kuitenkin kirjautumisen (käyttäjätunnus ja salasana) jotta ulkopuoliset
-eivät näe tietoja.

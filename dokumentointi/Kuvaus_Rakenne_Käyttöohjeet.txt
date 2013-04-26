@@ -1,0 +1,38 @@
+Kuvaus:
+  Ohjelma on rekisteri, joka sisältää henkilöitä ja heidän tietojaan. Käyttäjä voi lukea henkilöiden tietoja,
+lisätä henkilöitä sekä poistaa henkilöitä.
+
+----------
+Rakenne:
+  Ohjelmassa Kayttoliittyma luo LPKJasenrekisterin, graaffisen käyttöliittymän komponentit sekä näille
+Kuuntelijat. LPKJasenrekisteri luo muistin, joka lukee aikaisemmin tallennetut henkilöt ja tallentaa
+LPKJasenrekisteri:ssa olevat henkilöt kutsuttaessa takaisin massamuistiin. LPKJasenrekisteri säilyttää
+nykyisiä henkilöitä 'ArrayList<Henkilo> Henkilot':ssä.
+
+Painettaessa käyttöliittymässä nappia, Kuuntelija määrittää mitä napin paino tekee. Mikäli nappi muuttaa
+henkilot -listaa, päivittää kuuntelija uuden listan LPKJasenrekisterille ja käskee käyttöliittymän luomaan
+uudet päivitetyt ikkunat uudella Henkilot -listalla jotta muutokset päivittyvät käyttäjälle näkyviin.
+
+Painettaessa tallenna nappia, Kayttoliittyma kutsuu LPKJasenrekisterin metodia 'tallenna()', joka käskee
+muistia tallentamaan nykyinen henkilot -listan massamuistiin.
+
+----------
+Käyttöohjeet:
+LPKJasenrekisteri käyttää massamuistinaan ohjelman suoritushakemistoon sijoitettua tekstitiedostoa
+'./muisti/henkilot.txt'. Mikäli kansiota 'muisti' ei ole suoritushakemistossa, ohjelman muististaluku
+eikä tallennus ei toimi oikein.
+
+Alkuikkuna ei nykyisessä versiossa tee mitään. Painamalla "OK" pääset käyttämään varsinaista ohjelmaa.
+
+"Näytä Jäsenet" -napin takana on nykyinen rekisterin tila, sinne tallennetut henkilöt ja heidän tietonsa.
+
+Painamalla "Lisää jäsen" käyttäjä pääseen syöttämään uuden henkilön tiedot. Henkilöllä tulee olla nimi sekä
+muotoon 'päivä:kuukausi:vuosi' kirjoitettu syntymäaika tai henkilöä ei lisätä. Ryhmä on vapaaehtoinen.
+Painamalla toista "lisää jäsen" -nappia ohjelma lisää "Näytä Jäsenet" taakse oikein syötetyn uuden henkilön.
+
+Painamalla "Poista Jäsen" käyttäjä syöttää poistettavan henkilön nimen kenttään. "Poista" poistaa ensimmäisen
+listalla olevan saman nimisen henkilön kuin käyttäjän syöte kenttään.
+
+"Tallenna" tallentaa nykyiset henkilöt henkilot.txt:hen. Tekstitiedosto ylikirjoittuu välittömästi
+nappia painamalla. Mikäli muutoksia on tehty henkilot -listaan ja ruksia painetaan enne tallentamista,
+ohjelma haukkuu käyttäjän oikeaoppisesti urpoksi.

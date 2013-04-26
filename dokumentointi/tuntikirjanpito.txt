@@ -6,3 +6,4 @@
 17.4.2013: CardLayout ei vain lutviudu... 6h
 23.4.2013: tappelin pirun Swingin kanssa kun ei vaan tule kaunista ja yksinkertaistakun
 		saatanan rumaa enkä meinaa itsekään pysyä kättyillä. PKRL! 8h, jmlt!
+27.4.2013: Johan tärppäsi. Ohjelma toimii, vaikkakin suunniteltua köyhemmillä ominaisuuksilla. Jes!: 4h
