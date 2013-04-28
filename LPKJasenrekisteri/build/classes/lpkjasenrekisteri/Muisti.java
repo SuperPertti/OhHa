@@ -18,10 +18,8 @@ public class Muisti {
     private File defaultTiedosto;
     private File tiedosto;
     private PrintWriter kirjoittaja;
-    private boolean lueDefault;
 
     public Muisti(){
-        this.lueDefault = true;
         this.defaultTiedosto = new File("./muisti/henkilot.txt");
         this.tiedosto = defaultTiedosto;
         this.polku = "";
@@ -34,9 +32,6 @@ public class Muisti {
  * @return ArrayList<Henkilo>
  */
     public ArrayList lue (){
-        if(!lueDefault){
-           tiedosto= new File (polku+tiedostonNimi);
-        }
         ArrayList<Henkilo> henkilot = new ArrayList();
         Scanner lukija;
           
@@ -120,12 +115,18 @@ public class Muisti {
 
 
     public void setPolku(String polku) {
-        lueDefault = false;
         this.polku = polku;
     }
 
     public void setTiedostonNimi(String tiedostonNimi) {
-        lueDefault = false;
         this.tiedostonNimi = tiedostonNimi;
+    }
+    
+    public void setTiedostoUser(String polku, String tiedostonNimi){
+        this.tiedosto = new File (polku+tiedostonNimi);
+    }
+    
+    public void setTiedostoDefault(){
+        this.tiedosto = defaultTiedosto;
     }
 }

@@ -51,7 +51,7 @@ public class Kayttoliittyma implements Runnable {
             @Override
             public void windowClosing(WindowEvent evt) {
                 if(rekisteri.getMuutoksia()){
-                    SwingUtilities.invokeLater(new VirheIkkuna(frame, "Et ole tallentanut muutoksiasi URPO"
+                    SwingUtilities.invokeLater(new VirheIkkuna(frame, "Et ole tallentanut muutoksiasi urpo..."
                             + "\nPaina vasemman panelin 'Tallenna' nappia"
                             + "\n"
                             + "\njos ei kiinnosta ni paina uudestaan ruksia..."));

@@ -174,7 +174,8 @@ public class Kuuntelija implements ActionListener {
                 return;
             }
             SwingUtilities.invokeLater(new VirheIkkuna(kayttis, "Henkilöä '"+annaNimiTekstikentta.getText()+"' ei ole listalla"
-                    + "\nSENKIN TORVI!"));
+                    + "\nsenkin torvi..."
+                    + "\nProTip: kopiopasaa nimi suoraa taulukosta"));
         }
     }
     
