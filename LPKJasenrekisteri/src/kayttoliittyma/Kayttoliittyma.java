@@ -1,20 +1,14 @@
 
 package kayttoliittyma;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,7 +19,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
 import lpkjasenrekisteri.Henkilo;
 import lpkjasenrekisteri.LPKJasenrekisteri;
 
@@ -297,4 +290,5 @@ public class Kayttoliittyma implements Runnable {
         poistaJasenPanel.add(poista);
         return poistaJasenPanel;
     }
+    
 }
