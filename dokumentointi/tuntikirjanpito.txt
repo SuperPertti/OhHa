@@ -7,3 +7,17 @@
 23.4.2013: tappelin pirun Swingin kanssa kun ei vaan tule kaunista ja yksinkertaistakun
 		saatanan rumaa enkä meinaa itsekään pysyä kättyillä. PKRL! 8h, jmlt!
 27.4.2013: Johan tärppäsi. Ohjelma toimii, vaikkakin suunniteltua köyhemmillä ominaisuuksilla. Jes!: 4h
+28.4.2013: Viimeiset lisäykset ja hionta sun muuta. 2h
+yht: 
+
+	
+	Loppufiilis työstä:
+Ohjelmasta ei valitettavasti tullut ollenkaan niin kattava kuin olisin halunnut. Synnä oli lähinnä aika jonka
+javan Swinging kanssa joutui painimaan. Opin ohjelman teon aikana todella paljon, lähinnä GUI:n tekemisestä.
+
+
+Nyt kun javalabran suorituksen jälkeen lähden tekemään koko roskan uudestaan, osaan lähteä tekemään
+sekä GUI:ta että sovelluslogiikkaan eritavalla. Pyrinkin tekemään seuraavaksi, kankean yhteen käyttöön tarkoi-
+tetun listausohjelman sijaan, geneerisen rekisterin, jossa käyttäjä saa itse päättää mitä tietoja haluaa
+laittaa taulukkoon.
+
