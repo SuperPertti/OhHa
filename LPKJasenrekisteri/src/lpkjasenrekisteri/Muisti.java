@@ -12,16 +12,21 @@ import java.util.Scanner;
  * @author Pertti
  */
 
-class Muisti {
-    private String defaultPolku;
+public class Muisti {
     private String polku;
+    private String tiedostonNimi;
+    private File defaultTiedosto;
     private File tiedosto;
     private PrintWriter kirjoittaja;
+    private boolean lueDefault;
 
     public Muisti(){
-        this.defaultPolku = "./muisti/henkilot.txt";
-        this.polku = defaultPolku;
-        this.tiedosto = new File(polku);
+        this.lueDefault = true;
+        this.defaultTiedosto = new File("./muisti/henkilot.txt");
+        this.tiedosto = defaultTiedosto;
+        this.polku = "";
+        this.tiedostonNimi = "";
+        
     }
     
 /**
@@ -29,6 +34,9 @@ class Muisti {
  * @return ArrayList<Henkilo>
  */
     public ArrayList lue (){
+        if(!lueDefault){
+           tiedosto= new File (polku+tiedostonNimi);
+        }
         ArrayList<Henkilo> henkilot = new ArrayList();
         Scanner lukija;
           
@@ -36,10 +44,6 @@ class Muisti {
             lukija = new Scanner(tiedosto);
         } catch (FileNotFoundException ex) {
             luoTiedosto();
-            return henkilot;
-        }
-        catch (Exception e){
-            System.out.println("Tiedoston lukemisessa virhe: " + e.getMessage());
             return henkilot;
         }
         
@@ -82,13 +86,13 @@ class Muisti {
     /**
      * luo uuden tekstitiedoston
      */
-    private void luoTiedosto(){
+    private boolean luoTiedosto(){
         try {
             kirjoittaja = new PrintWriter(tiedosto);
         } catch (Exception c){
-            System.out.println("Tiedoston luonnissa ongelma.");
+            return false;
         }
-        
+        return true;  
     }
     /**
      * METODI EI KÄYTÖSSÄ
@@ -102,12 +106,26 @@ class Muisti {
         return false;
     }
     
-    public String getPolku(){
+    public String getTiedostoJaPolku(){
+        return tiedosto.toString();
+    }
+
+    public String getPolku() {
         return polku;
     }
 
-    public String getDefaultPolku() {
-        return defaultPolku;
+    public String getTiedostonNimi() {
+        return tiedostonNimi;
     }
-    
+
+
+    public void setPolku(String polku) {
+        lueDefault = false;
+        this.polku = polku;
+    }
+
+    public void setTiedostonNimi(String tiedostonNimi) {
+        lueDefault = false;
+        this.tiedostonNimi = tiedostonNimi;
+    }
 }

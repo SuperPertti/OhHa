@@ -1,6 +1,4 @@
-/**
- * Graaffinen käyttöliittymä
- */
+
 package kayttoliittyma;
 
 import java.awt.BorderLayout;
@@ -61,7 +59,9 @@ public class Kayttoliittyma implements Runnable {
             public void windowClosing(WindowEvent evt) {
                 if(rekisteri.getMuutoksia()){
                     SwingUtilities.invokeLater(new VirheIkkuna(frame, "Et ole tallentanut muutoksiasi URPO"
-                            + "\n jos ei kiinnosta ni paina uudestaan ruksia..."));
+                            + "\nPaina vasemman panelin 'Tallenna' nappia"
+                            + "\n"
+                            + "\njos ei kiinnosta ni paina uudestaan ruksia..."));
                     rekisteri.setMuutoksia(false);
                     return;
                 }
@@ -209,7 +209,7 @@ public class Kayttoliittyma implements Runnable {
         JPanel naytaJasenetPanel = new JPanel();
         ArrayList<Henkilo> henkilot = rekisteri.getHenkilot();
 //OTSIKKORIVI:::
-        String [] otsikkorivi = {"Nimi", "Ikä", "Ryhmä"};
+        String [] otsikkorivi = {"Nimi", "Syntymäaika", "Ryhmä"};
 //HENKILÖIDEN LUKU LISTALTA JA RIVITYS
         Object [][] pahuudenTaulukko = new Object [henkilot.size()][];
         int rivinumero = 0;

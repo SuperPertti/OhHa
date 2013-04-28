@@ -12,7 +12,7 @@ import javax.swing.SwingUtilities;
 import lpkjasenrekisteri.LPKJasenrekisteri;
 
 /**
- *Kuuntelee ikkunan toimintoja.
+ *Kuuntelee ikkunan yläkulman ruksia, estää sulkemisen jos ei tallennettu.
  * @author Pertti
  */
 public class IkkunanKuuntelija extends WindowAdapter {

@@ -3,7 +3,6 @@ package lpkjasenrekisteri;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,14 +16,12 @@ public class LPKJasenrekisteri {
     private Muisti muisti;
     private ArrayList<Henkilo> henkilot;
     private ArrayList<String> muutokset;
-    private Scanner lukija;
     private boolean muutoksia;
     
     public LPKJasenrekisteri (){
         this.muisti = new Muisti();
         this.henkilot = new ArrayList();
         this.muutokset = new ArrayList();
-        this.lukija = new Scanner(System.in);
         this.muutoksia = false;
     }
 
@@ -73,6 +70,7 @@ public class LPKJasenrekisteri {
       public void lisaa (Henkilo henkilo){
           muutoksia = true;
           henkilot.add(henkilo);
+          muutokset.add("Henkilö "+henkilo.getNimi()+" lisätty");
       }
       
 //    public void lisaa() {
@@ -109,6 +107,7 @@ public class LPKJasenrekisteri {
         for (Henkilo henkilo : henkilot) {
             if(henkilo.getNimi().equals(nimi)){
                 henkilot.remove(henkilo);
+                muutokset.add("Henkilö "+henkilo.getNimi()+" poistettu");
                 return true;
             }
         }
@@ -173,6 +172,7 @@ public class LPKJasenrekisteri {
                 Logger.getLogger(LPKJasenrekisteri.class.getName()).log(Level.SEVERE, null, ex);
             }
          muutoksia = false;
+         muutokset.clear();
         
 //        String komento = "";
 //        System.out.print("Olet tallentamassa tekemiäsi muutoksia:\n");
@@ -200,13 +200,9 @@ public class LPKJasenrekisteri {
     }
     
         public String getPolku (){
-        return muisti.getPolku();
+        return muisti.getTiedostoJaPolku();
     }
-    
-    public String getDefaultPolku (){
-        return muisti.getDefaultPolku();
-    }
-
+ 
     public ArrayList<Henkilo> getHenkilot() {
         return henkilot;
     }

@@ -1,0 +1,17 @@
+Testaus Dokumentointi:
+  Käyttöliittymä -
+Käyttöliittymä on testattu tarkistamalla että 'Näytä jäsenet' -napin takaa taulukko päivittyy
+oikein joka toiminnon jälkeen. Tallennus on testattu manuaalisesti avaamalla tekstitiedosto
+ja tarkistamalla että rivit on kirjoitettu oikein. Jos rivit ovat oikein muutosten jälkeen
+tiedostossa, on koko toimintoketju toiminut oikein.
+
+  Sovelluslogiigan testaus -
+Muistia tulisi testata, jotta varmistetaan automaattisesti sekä tallennus että muististaluku-
+ominaisuus oikeaksi. Muistin testausta ei kuitenkaan ole kirjoitettu, koska luokka on todettu
+paskasti kirjoitetuksi eikä siihen siksi jaksa kirjoittaa testejä turhaan kun kuitenkin menee
+uusiksi. Kuten ylhäällä todettu, muisti on testattu tarkastamalla tekstitiedoston oikeellisuus
+tallennuksen jälkeen (näin löytyi myös rivinvaihto -bugi aikanaan).
+
+  Tunnettuja bugeja -
+painettaessa ruksia, ohjelma saattaa sanoa että muutoksia olisi tallentamatta vaikka todellisuudessa
+muutoksia ei olisi tehty (tai mennyt läpi).

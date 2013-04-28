@@ -1,1 +1,5 @@
-Ämmä;1:1:1;asd
+Normi jamppa;1:1:1900;Normit
+Numero jamppa <9000;31:12:2012;numba
+qwerty;1:1:1990;asdfdsgd
+paavo;1:1:1990;korpit
+Henri;1:11:1943;koropit

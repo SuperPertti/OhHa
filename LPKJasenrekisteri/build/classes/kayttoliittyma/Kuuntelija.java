@@ -124,7 +124,8 @@ public class Kuuntelija implements ActionListener {
         if(e.getSource().equals(lisaaJasen)){
             String nimi = nimiKentta.getText();
             String ryhma = ryhmaKentta.getText();
-            if(nimi.equals("")){
+            if(nimi.equals("") || syntymaaikaKentta.getText().equals("")){
+                SwingUtilities.invokeLater(new VirheIkkuna(frame, "Henkilöllä täytyy olla nimi ja syntymaaika"));
                 return;
             }
             Syntymaaika syntymaaika;
@@ -136,11 +137,16 @@ public class Kuuntelija implements ActionListener {
                 int paiva = Integer.parseInt(ika[0]);
                 
                 syntymaaika = new Syntymaaika (vuosi,kuukausi,paiva,nimi);
+                if(!syntymaaika.tarkastaSyntymaaika()){
+                    SwingUtilities.invokeLater(new VirheIkkuna(frame, "Et varmaan ole syntynyt "+syntymaaika.toString()
+                            + "\nMistä tiedän? Olen selvännäkijä!"));
+                    return;
+                }
             }
             catch (Exception ex){
 //                frame.setEnabled(false);
-                SwingUtilities.invokeLater(new VirheIkkuna(frame, "Paskat olet syntynyt "+ syntymaaikaKentta.getText()
-                        + "\nyritäppä uudestaan"));
+                SwingUtilities.invokeLater(new VirheIkkuna(frame, "Annoit syntymäajan väärässä muodossa."
+                        + "\nEikö äiti opettanut noudattamaan käyttöohjeita?"));
                 return;
             }
             rekisteri.lisaa(new Henkilo(nimi, syntymaaika, ryhma));
@@ -157,6 +163,10 @@ public class Kuuntelija implements ActionListener {
             rekisteri.tallenna();
         }
         if(e.getSource().equals(poista)){
+            if(annaNimiTekstikentta.getText().equals("")){
+                SwingUtilities.invokeLater(new VirheIkkuna(kayttis,"Anna nimi poistaaksesi henkilö"));
+                return;
+            }
             if(rekisteri.poista(annaNimiTekstikentta.getText())){
                 annaNimiTekstikentta.setText("");
                 paaIkkuna = main.luoPaaIkkuna();
